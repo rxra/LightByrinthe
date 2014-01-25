@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: OrthoShadowMat
-  m_Shader: {fileID: 4800000, guid: 1ffe3c334b47bc2498436ca58590e821, type: 3}
+  m_Shader: {fileID: 4800000, guid: 2c8ed4919a3b3724db38816c12a44d8b, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:

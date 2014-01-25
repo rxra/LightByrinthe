@@ -2,19 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
-public class Cell
-{
-	public Cell(GameObject go, int type)
-	{
-		Type 	= type;
-		Go 		= go;
-	}
-
-	public int 			Type;
-	public GameObject	Go;
-}
-
 public class Level : MonoBehaviour {
 
 	public TextAsset TexLevel;
@@ -30,6 +17,8 @@ public class Level : MonoBehaviour {
 	public Vector2 scaleToReference;
 
 	public static Level instance = null;
+
+	public List<GameObject> TileSet;
 
 	void Awake()
 	{
@@ -60,16 +49,23 @@ public class Level : MonoBehaviour {
 			string[] v = lines[j].Split(',');
 			for(int i = 0; i < width; i++)
 			{
-				Debug.Log ("read : " + i);
+				//Debug.Log ("read : " + i);
 				int type = int.Parse(v[i]);
 
-				GameObject go = GameObject.CreatePrimitive(PrimitiveType.Quad);
-				
+				GameObject go = (GameObject)GameObject.Instantiate(TileSet[type]);//(GameObject)GameObject.Instantiate(Tile_1);//GameObject.CreatePrimitive(PrimitiveType.Quad);
+
+				/*go.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(
+					i*tileSize.x+tileSize.x/2-screenSizeRef.x/2,
+					screenSizeRef.y/2-j*tileSize.y+tileSize.y/2,
+				 	0
+				));*/
+
 				go.transform.position = new Vector3(
 					(i*tileSize.x+tileSize.x/2-screenSizeRef.x/2)*pixelToWorldRatio*scaleToReference.x,
-					(screenSizeRef.y/2-j*tileSize.y)*pixelToWorldRatio*scaleToReference.x,
+					((screenSizeRef.y/2-j*tileSize.y+tileSize.y/2)*pixelToWorldRatio*scaleToReference.x),
 					0);
-				Debug.Log ("x="+i + " : " + go.transform.position.x);
+
+				//Debug.Log ("x="+i + " : " + go.transform.position.x);
 				go.transform.parent = this.transform;
 				go.transform.localScale = new Vector3(
 					tileSize.x*pixelToWorldRatio*scaleToReference.x,
@@ -78,12 +74,15 @@ public class Level : MonoBehaviour {
 				);
 
 
-				if(type == 1)
-				{
-					go.renderer.material.color = Color.green;
-				}
+				//if(type == 1)
+				//{
+				//	go.renderer.material.color = Color.green;
+				//}
 
-				Grid.Add(new Cell(go, type));
+				Cell c = go.AddComponent<Cell>();
+				c.SetCellType(type);
+
+				Grid.Add(c);
 			}
 		}
 
@@ -111,10 +110,10 @@ public class Level : MonoBehaviour {
 			float.TryParse(v[3], out oy);
 
 			Vector3 offset = new Vector3(ox, oy, 0.0f); 
-			Vector3 lookAt = new Vector3(int.Parse(v[4]), int.Parse(v[5]), 0.0f);
-			int angle = int.Parse(v[6]);
-			int intensity = int.Parse(v[7]);
-			int range = int.Parse(v[8]);
+			int orientation = int.Parse(v[4]);//Vector3 lookAt = new Vector3(int.Parse(v[4]), int.Parse(v[5]), 0.0f);
+			int angle = int.Parse(v[5]);
+			int intensity = int.Parse(v[6]);
+			int range = int.Parse(v[7]);
 			                       
 			/*Debug.Log (pos);
 			Debug.Log (offset);
@@ -128,8 +127,8 @@ public class Level : MonoBehaviour {
 			goLight.light.type 	= LightType.Spot;
 
 			goLight.transform.localRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-			goLight.transform.position = c.Go.transform.position + new Vector3(offset.x, offset.y, -0.15f);
-			goLight.transform.parent = c.Go.transform;
+			goLight.transform.position = c.GetTransform().position + new Vector3(offset.x, offset.y, -0.15f);
+			goLight.transform.parent = c.GetTransform().transform;
 			goLight.light.spotAngle = angle;
 			goLight.light.intensity = intensity;
 			goLight.light.range = range;

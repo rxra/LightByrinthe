@@ -3,49 +3,59 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Actor : MonoBehaviour {
-
-	public int[,] _board;
+public class Actor : LightReceiver {
+	
 	public SettlersEngine.MyPathNode[,] _mapNoded;
-
-	private Level _level;
-
+	
 	private Vector3 CurCell;
 	private Vector3 NextCell;
 
 	private int CurPathIdx;
 
-	private float _Speed;
 	private float _startTime;
 	private bool _lerp;
+
+	public float	CooldownCur;
+	public float 	CooldownTimer;
+	private float 	Speed;
+
+	private bool 	InBlackArea;
 
 	private Vector3 _zOffset;
 
 	private List<Vector2> Path;
 
-	// Use this for initialization
-	void Start () {
+	private bool _isDead;
 
-		_Speed = 3.0f;
+	// Use this for initialization
+	public override void Start () {
+
+		base.Start();
+
+		Speed = 1.0f;
+		CooldownCur = 0;
+		CooldownTimer = 10.0f;
+
+		_isDead = false;
+
+		InBlackArea = true;
 
 		_zOffset = new Vector3(0,0,-0.2f);
-
-		_level = Level.instance;
 
 		Path = new List<Vector2>();
 
 		Cell spawn 	= _level.GetCellAt(0,0);
-		Cell exit 	= _level.GetCellAt(_level.width-1,_level.height-1);
+		//Cell exit 	= _level.GetCellAt(_level.width-1,_level.height-1);
 
 		//Debug.Log (spawn.Go.transform.position);
-		transform.position = spawn.Go.transform.position - new Vector3(0, 0, -1.0f);
+		transform.position = spawn.GetTransform().position - new Vector3(0, 0, -1.0f);
 
-		transform.localScale = new Vector3(
+		/*transform.localScale = new Vector3(
 			_level.tileSize.x*_level.pixelToWorldRatio*_level.scaleToReference.x,
 			_level.tileSize.y*_level.pixelToWorldRatio*_level.scaleToReference.y,
 			1.0f
 			);
-
+*/
 		bool isWall = false;
 		_mapNoded = new SettlersEngine.MyPathNode[_level.width, _level.height];
 		for (int i = 0; i < _level.width; ++i)
@@ -53,7 +63,7 @@ public class Actor : MonoBehaviour {
 			for (int j = 0; j < _level.height; ++j)
 			{
 				//Debug.Log(i + "  " + j);
-				isWall = _level.GetCellAt(i,j).Type == 1 ? true : false;
+				isWall = _level.GetCellAt(i,j).GetCellType() == 1 ? true : false;
 				//Debug.Log(isWall);
 				_mapNoded[i, j] = new SettlersEngine.MyPathNode()
 				{
@@ -72,8 +82,8 @@ public class Actor : MonoBehaviour {
 			//_level.GetCellAt((int)node.X, (int)node.Y).Go.renderer.material.color = Color.green;
 		}
 
-		CurCell  = spawn.Go.transform.position + _zOffset;
-		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).Go.transform.position + _zOffset;
+		CurCell  = spawn.GetTransform().position + _zOffset;
+		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).GetTransform().position + _zOffset;
 		CurPathIdx = 1;
 
 		_startTime = Time.time;
@@ -81,23 +91,29 @@ public class Actor : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	public override void Update () 
 	{
-		if(IsInLight())
+		if(_isDead)
+			return;
+
+		base.Update();
+
+		if(InBlackArea)
 		{
-			renderer.material.color = Color.red;
-		}
-		else {
-			renderer.material.color = Color.white;
+			CooldownCur += Time.deltaTime;
+			if(CooldownCur >= CooldownTimer)
+			{
+				_isDead = true;
+				OnDead();
+			}
 		}
 
 		if(transform.position.Equals(NextCell)==false) {
 			if(_lerp) {
 
-				float speed = 1;
 				float _length = Vector3.Distance(NextCell, CurCell);
 
-				float distCovered = (Time.time - _startTime) * speed;
+				float distCovered = (Time.time - _startTime) * Speed;
 				float fracJourney = distCovered / _length;
 				transform.position = Vector3.Lerp(CurCell,NextCell,fracJourney);
 			}
@@ -110,7 +126,7 @@ public class Actor : MonoBehaviour {
 
 				CurPathIdx++;
 				CurCell = NextCell;
-				NextCell = _level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).Go.transform.position + _zOffset;
+				NextCell = _level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).GetTransform().position + _zOffset;
 
 			}
 			else{
@@ -119,43 +135,31 @@ public class Actor : MonoBehaviour {
 			}
 		}
 	}
-	
-	
+
 	public IEnumerable<SettlersEngine.MyPathNode> getAstarPath(Vector2 start, Vector2 end, int ignoreID)
 	{
 		SettlersEngine.MySolver<SettlersEngine.MyPathNode, System.Object> aStar = new SettlersEngine.MySolver<SettlersEngine.MyPathNode, System.Object>(_mapNoded);
 		return aStar.Search(start, end, null, true);	
 	}
 
-	public bool IsInLight()
+	protected override void OnLightEnter()
 	{
-		for(int i = 0; i< _level.Lights.Count; ++i)
-		{
-			Vector3 H 			= transform.position;
-			Vector3 G 			= _level.Lights[i].transform.position;
-			Vector3 D 			= Vector3.Normalize(_level.Lights[i].transform.forward);
-			
-			float Dist 			= Vector3.Distance(H, G); 
-			float GAngle 		= _level.Lights[i].spotAngle;
-			
-			Vector3 V = Vector3.Normalize(H-G);
-			
-			//RaycastHit hit = new RaycastHit();
-			
-			/*if(Physics.Raycast(G, V, out hit, Dist)) 
-			{
-				if(hit.collider.gameObject != this.gameObject)
-					return false;
-			}*/
-			//return false;
-			if(Vector3.Dot(V,D) > 0 && (Vector3.Angle(V,D) < GAngle) && (Dist < _level.Lights[i].range))
-				return true;
-		}
-
-		return false;
+		renderer.material.color = Color.red;
+		InBlackArea = false;
 	}
 
-	public void OnReachExit()
+	protected override void OnLightExit()
+	{
+		renderer.material.color = Color.white;
+		InBlackArea = true;
+		CooldownCur = 0;
+	}
+
+	protected void OnReachExit()
+	{
+	}
+
+	protected void OnDead()
 	{
 	}
 }
