@@ -43,8 +43,8 @@ MonoBehaviour:
   tileSize: {x: 64, y: 64}
   screenSizeRef: {x: 1024, y: 768}
   Lights: []
-  Actors: []
-  NbActors: 0
+  NbActors: 4
+  actorPrefab: {fileID: 100000, guid: 96f875d0414460b4eafa834af1b379a7, type: 2}
   width: 0
   height: 0
   pixelToWorldRatio: 0
@@ -59,6 +59,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: 08d15838b20d570459c2e110f02713c7, type: 2}
   - {fileID: 100000, guid: 6b737ae381ad58f45b88138a581a15cf, type: 2}
   - {fileID: 100000, guid: 79a0da50599c5d0478cc3f58b388677e, type: 2}
+  firstSpawnTime: 2
+  spawnTimeFreq: 5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
