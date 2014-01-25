@@ -41,3 +41,19 @@ TagManager:
     userID: 0
     uniqueID: 0
     locked: 0
+  - name: Floor
+    userID: 1
+    uniqueID: 1913380041
+    locked: 0
+  - name: Actor
+    userID: 2
+    uniqueID: 3177919827
+    locked: 0
+  - name: Light
+    userID: 3
+    uniqueID: 4185136871
+    locked: 0
+  - name: Wall
+    userID: 4
+    uniqueID: 2973656163
+    locked: 0
