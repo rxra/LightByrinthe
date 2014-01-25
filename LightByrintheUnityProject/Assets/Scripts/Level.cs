@@ -125,10 +125,10 @@ public class Level : MonoBehaviour {
 		{
 			GameObject goLight = new GameObject("Light");
 			goLight.AddComponent<Light>();
-			MidiRotation mr = goLight.AddComponent<MidiRotation>() as MidiRotation;
+			MidiTranslation mr = goLight.AddComponent<MidiTranslation>() as MidiTranslation;
 			mr.key = 9 + Lights.Count;
-			mr.button = MidiRotation.JButton.A_1 + Lights.Count;
-
+			mr.button = MidiTranslation.JButton.A_1 + Lights.Count;
+	
 			string[] v = lines[i].Split(',');
 
 			Vector3 pos = new Vector3(int.Parse(v[0]), int.Parse(v[1]), -0.4f);
@@ -140,14 +140,18 @@ public class Level : MonoBehaviour {
 			float.TryParse(v[3], out oy);
 
 			Vector3 offset = new Vector3(ox, oy, 0.0f); 
-			int orientation = int.Parse(v[4]);//Vector3 lookAt = new Vector3(int.Parse(v[4]), int.Parse(v[5]), 0.0f);
+
+			mr.axis = (int.Parse(v[4]) == 1) ? Vector3.up : Vector3.right;
+			Debug.Log (mr.axis);
 			int angle = int.Parse(v[5]);
 			int intensity = int.Parse(v[6]);
 			int range = int.Parse(v[7]);
 
-			Cell c = GetCellAt((int)pos[0], (int)pos[1]);
+			Color color = new Color(int.Parse(v[8]),int.Parse(v[9]),int.Parse(v[10]));
 
-			goLight.light.color = Color.white;
+			Cell c = GetCellAt((int)pos[0], (int)pos[1]);
+			Debug.Log (color);
+			//goLight.light.color = Color.white;
 			goLight.light.type 	= LightType.Spot;
 
 			goLight.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
@@ -156,6 +160,7 @@ public class Level : MonoBehaviour {
 			goLight.light.spotAngle = angle;
 			goLight.light.intensity = intensity;
 			goLight.light.range = range;
+			goLight.light.color = color;
 
 			Lights.Add(goLight.light);
 		}

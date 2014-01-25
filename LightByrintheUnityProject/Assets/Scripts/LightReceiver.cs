@@ -39,14 +39,7 @@ public class LightReceiver : MonoBehaviour {
 			
 			Vector3 V = Vector3.Normalize(H-G);
 			
-			//RaycastHit hit = new RaycastHit();
-			
-			/*if(Physics.Raycast(G, V, out hit, Dist)) 
-			{
-				if(hit.collider.gameObject != this.gameObject)
-					return false;
-			}*/
-			//return false;
+
 			if(Vector3.Dot(V,D) > 0 && (Vector3.Angle(V,D) < GAngle) && (Dist < _level.Lights[i].range))
 				return true;
 		}
