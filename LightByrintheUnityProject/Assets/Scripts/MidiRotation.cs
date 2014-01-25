@@ -16,12 +16,15 @@ public class MidiRotation : MonoBehaviour {
 	public float jspeed = 20;
 	public float maxRotation = 90f;
 
-	public bool miniEnabled = false;
+	public bool midiEnabled = false;
 
 	private float midiZero = 127f/2f;
+	private Quaternion initialeQ;
+
 	// Use this for initialization
 	void Start () {
 		mManager = MidiManager.instance;
+		initialeQ = transform.localRotation;
 	}
 	
 	// Update is called once per frame
@@ -30,9 +33,12 @@ public class MidiRotation : MonoBehaviour {
 		if (mManager!=null && mManager.enabled) {
 			int v = 0;
 			if (mManager.GetKeyVelocity(key, out v)) {
-				transform.localRotation = Quaternion.Euler(0,0,((float)v)<midiZero?((midiZero-v)*maxRotation/midiZero):((127-v)*maxRotation/midiZero));
+				transform.localRotation = Quaternion.Euler(
+					((float)v)<midiZero?((midiZero-v)*maxRotation/midiZero):((127-v)*maxRotation/midiZero-maxRotation),
+					initialeQ.eulerAngles.y,
+					initialeQ.eulerAngles.z);
 			} else {
-				transform.localRotation = Quaternion.identity;
+				transform.localRotation = initialeQ;
 			}
 		} else {
 			if (Input.GetButton(button.ToString())) {
@@ -43,7 +49,7 @@ public class MidiRotation : MonoBehaviour {
 					_currentRotation = -maxRotation;
 				}
 				Debug.Log (_currentRotation);
-				transform.localRotation = Quaternion.Euler(0,0,_currentRotation);
+				transform.localRotation = Quaternion.Euler(_currentRotation,initialeQ.eulerAngles.y,initialeQ.eulerAngles.z);
 			}
 		}
 	}

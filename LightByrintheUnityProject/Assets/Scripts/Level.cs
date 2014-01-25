@@ -96,6 +96,9 @@ public class Level : MonoBehaviour {
 		{
 			GameObject goLight = new GameObject("Light");
 			goLight.AddComponent<Light>();
+			MidiRotation mr = goLight.AddComponent<MidiRotation>() as MidiRotation;
+			mr.key = 9 + Lights.Count;
+			mr.button = MidiRotation.JButton.A_1 + Lights.Count;
 
 			string[] v = lines[i].Split(',');
 
@@ -138,5 +141,12 @@ public class Level : MonoBehaviour {
 	public Cell GetCellAt(int x, int y)
 	{
 		return Grid[x + width * y];
+	}
+
+	void Update()
+	{
+		if (Input.GetButton("A_1")) {
+			Debug.Log("b");
+		}
 	}
 }
