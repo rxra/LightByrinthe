@@ -7,4 +7,9 @@ public class CellButton : Cell {
 	{
 		Debug.Log("Trigger Button!");
 	}
+
+	public virtual void OnActorExit(Actor a)
+	{
+	}
+
 }

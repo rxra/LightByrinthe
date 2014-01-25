@@ -10,9 +10,10 @@ public class Level : MonoBehaviour {
 
 	private List<Cell> 	Grid;
 	public List<Light> 	Lights;
-	public List<Actor> 	Actors;
+	private List<Actor> Actors = new List<Actor>();
 
 	public int NbActors;
+	public GameObject actorPrefab;
 
 	public int width;
 	public int height;
@@ -23,6 +24,10 @@ public class Level : MonoBehaviour {
 	public static Level instance = null;
 
 	public List<GameObject> TileSet;
+
+	public float firstSpawnTime = 2f;
+	public float spawnTimeFreq = 5f;
+	private float lastSpawnTime;
 
 	void Awake()
 	{
@@ -35,7 +40,8 @@ public class Level : MonoBehaviour {
 
 	void Start () 
 	{
-	
+		lastSpawnTime = Time.time;
+
 		pixelToWorldRatio = 2*Camera.main.orthographicSize/Screen.height;
 		scaleToReference = new Vector2(
 			(float)Screen.width/screenSizeRef.x,
@@ -53,7 +59,6 @@ public class Level : MonoBehaviour {
 			string[] v = lines[j].Split(',');
 			for(int i = 0; i < width; i++)
 			{
-				//Debug.Log ("read : " + i);
 				int type = int.Parse(v[i]);
 
 				GameObject go = (GameObject)GameObject.Instantiate(TileSet[type]);//(GameObject)GameObject.Instantiate(Tile_1);//GameObject.CreatePrimitive(PrimitiveType.Quad);
@@ -69,7 +74,6 @@ public class Level : MonoBehaviour {
 					((screenSizeRef.y/2-j*tileSize.y+tileSize.y/2)*pixelToWorldRatio*scaleToReference.x),
 					0);
 
-				//Debug.Log ("x="+i + " : " + go.transform.position.x);
 				go.transform.parent = this.transform;
 				go.transform.localScale = new Vector3(
 					tileSize.x*pixelToWorldRatio*scaleToReference.x,
@@ -145,8 +149,8 @@ public class Level : MonoBehaviour {
 			goLight.light.color = Color.white;
 			goLight.light.type 	= LightType.Spot;
 
-			goLight.transform.localRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-			goLight.transform.position = c.GetTransform().position + new Vector3(offset.x, offset.y, -0.15f);
+			goLight.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+			goLight.transform.position = c.GetTransform().position + new Vector3(offset.x, offset.y, -1f);
 			goLight.transform.parent = c.GetTransform().transform;
 			goLight.light.spotAngle = angle;
 			goLight.light.intensity = intensity;
@@ -163,8 +167,22 @@ public class Level : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetButton("A_1")) {
-			Debug.Log("b");
+		if (Actors.Count==0 && NbActors>0) {
+			if ((Time.time-lastSpawnTime)>firstSpawnTime) {
+				GameObject actor = GameObject.Instantiate(actorPrefab) as GameObject;
+				Actors.Add (actor.GetComponent<Actor>());
+				lastSpawnTime = Time.time;
+			}
+		} else if (Actors.Count<NbActors) {
+			if ((Time.time-lastSpawnTime)>spawnTimeFreq) {
+				GameObject actor = GameObject.Instantiate(actorPrefab) as GameObject;
+				Actors.Add (actor.GetComponent<Actor>());
+				lastSpawnTime = Time.time;
+			}
 		}
+
+		/*if (Input.GetButton("A_1")) {
+			Debug.Log("b");
+		}*/
 	}
 }
