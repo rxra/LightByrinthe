@@ -103,7 +103,7 @@ MonoBehaviour:
   screenSizeRef: {x: 1024, y: 768}
   Lights: []
   NbActors: 4
-  actorPrefab: {fileID: 100000, guid: 96f875d0414460b4eafa834af1b379a7, type: 2}
+  actorPrefab: {fileID: 100000, guid: 9eca739b1437b544ebead601562f8eb5, type: 2}
   width: 0
   height: 0
   pixelToWorldRatio: 0

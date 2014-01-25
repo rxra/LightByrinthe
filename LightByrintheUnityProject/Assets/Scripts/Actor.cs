@@ -178,13 +178,13 @@ public class Actor : LightReceiver {
 
 	protected override void OnLightEnter()
 	{
-		renderer.material.color = Color.red;
+		//renderer.material.color = Color.red;
 		InBlackArea = false;
 	}
 
 	protected override void OnLightExit()
 	{
-		renderer.material.color = Color.white;
+		//renderer.material.color = Color.white;
 		InBlackArea = true;
 		CooldownCur = 0;
 	}
