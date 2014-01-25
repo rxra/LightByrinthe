@@ -8,6 +8,7 @@ public class MidiManager : MonoBehaviour {
 	private MIDIInput midiInput = new MIDIInput();
 	// Creating a seperate thread
 	private Thread midiThread;
+	private bool _initialized = false;
 
 	private static MidiManager s_Instance = null;
 
@@ -16,6 +17,14 @@ public class MidiManager : MonoBehaviour {
 		get
 		{
 			return s_Instance;
+		}
+	}
+
+	public bool initialized
+	{
+		get
+		{
+			return _initialized;
 		}
 	}
 
@@ -49,8 +58,10 @@ public class MidiManager : MonoBehaviour {
 			// Create new thread for handling MIDI input with best perforamnce
 			midiThread = new Thread(new ThreadStart(midiInput.run));
 			midiThread.Start();
+			_initialized = true;
 		}
 		else {
+			_initialized = false;
 			Debug.LogWarning ("failed to initialize midi");
 			Application.Quit();
 		}
@@ -64,6 +75,7 @@ public class MidiManager : MonoBehaviour {
 		// Stop thread loop and terminate it
 		midiInput.done = true;
 		midiInput.Terminate();
+		_initialized = false;
 	}
 	
 	// Update is called once per frame
