@@ -25,6 +25,7 @@ public class Actor : LightReceiver {
 
 	private List<Vector2> Path;
 
+	private bool _ReachExit;
 	private bool _isDead;
 
 	// Use this for initialization
@@ -191,5 +192,20 @@ public class Actor : LightReceiver {
 
 	protected void OnDead()
 	{
+	}
+
+	public void OnExit()
+	{
+		_ReachExit = true;
+	}
+
+	public bool Dead()
+	{
+		return _isDead;
+	}
+
+	public bool Finished()
+	{
+		return _ReachExit;
 	}
 }
