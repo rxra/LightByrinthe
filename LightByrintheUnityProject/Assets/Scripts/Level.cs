@@ -83,6 +83,14 @@ public class Level : MonoBehaviour {
 				{
 				 	c = go.AddComponent<CellSpawn>();
 				}
+				if(type == 6)
+				{
+					c = go.AddComponent<CellExit>();
+				}
+				else if(type == 7)
+				{
+					c = go.AddComponent<CellTrap>();
+				}
 				else
 				{
 					c = go.AddComponent<Cell>();

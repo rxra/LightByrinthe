@@ -12,8 +12,8 @@ public class Actor : LightReceiver {
 
 	private int CurPathIdx;
 
-	private float _startTime;
-	private bool _lerp;
+	private float 	_startTime;
+	private bool 	_lerp;
 
 	public float	CooldownCur;
 	public float 	CooldownTimer;
@@ -32,7 +32,7 @@ public class Actor : LightReceiver {
 
 		base.Start();
 
-		Speed = 1.0f;
+		Speed = 0.4f;
 		CooldownCur = 0;
 		CooldownTimer = 10.0f;
 
@@ -128,10 +128,11 @@ public class Actor : LightReceiver {
 				CurCell = NextCell;
 				NextCell = _level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).GetTransform().position + _zOffset;
 
+				_level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).OnActorExit(this);
+				_level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).OnActorEnter(this);
 			}
 			else{
 				_lerp = false;
-				OnReachExit();
 			}
 		}
 	}
@@ -153,10 +154,6 @@ public class Actor : LightReceiver {
 		renderer.material.color = Color.white;
 		InBlackArea = true;
 		CooldownCur = 0;
-	}
-
-	protected void OnReachExit()
-	{
 	}
 
 	protected void OnDead()

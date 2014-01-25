@@ -28,4 +28,12 @@ public class Cell : LightReceiver {
 	{
 		return gameObject.transform;
 	}
+
+	public virtual void OnActorEnter(Actor a)
+	{
+	}
+
+	public virtual void OnActorExit(Actor a)
+	{
+	}
 }
