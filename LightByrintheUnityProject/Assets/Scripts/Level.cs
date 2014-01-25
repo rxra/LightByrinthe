@@ -195,9 +195,32 @@ public class Level : MonoBehaviour {
 				lastSpawnTime = Time.time;
 			}
 		}
+		else
+		{
+			bool dead = true;
+			bool finished = true;
+			for(int i = 0; i < Actors.Count; ++i)
+			{
+				if(!Actors[i].Finished())
+				{
+					finished = false;
+				}
 
-		/*if (Input.GetButton("A_1")) {
-			Debug.Log("b");
-		}*/
+				if(!Actors[i].Dead ())
+				{
+					dead = false;
+				}
+			}
+
+			if(finished)
+			{
+				// Reach Next Level
+			}
+
+			if(dead)
+			{
+				// Game Over
+			}
+		}
 	}
 }

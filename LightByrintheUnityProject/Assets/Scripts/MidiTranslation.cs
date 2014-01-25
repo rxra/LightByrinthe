@@ -14,7 +14,8 @@ public class MidiTranslation : MonoBehaviour {
 	public int key = -1;
 	public JButton button = JButton.A_1;
 	public float jspeed = 20;
-	public float maxTranslation = 4f;
+	//public float maxTranslation = 2f;
+	public Vector2 maxTranslation = new Vector2(0.0f, 0.0f);
 	public Vector3 axis = new Vector3(1,0,0);
 	
 	public bool midiEnabled = false;
@@ -34,7 +35,7 @@ public class MidiTranslation : MonoBehaviour {
 		if (mManager!=null && mManager.enabled) {
 			int v = 0;
 			if (mManager.GetKeyVelocity(key, out v)) {
-				transform.position = initPos + axis * (((float)v<midiZero)?((midiZero-v)*maxTranslation/midiZero):((127-v)*maxTranslation/midiZero-maxTranslation));
+				transform.position = initPos + axis * (((float)v>midiZero)?((midiZero-v)*maxTranslation.x/midiZero):((127-v)*maxTranslation.y/midiZero-maxTranslation.y));
 
 				/*transform.localRotation = Quaternion.Euler(
 					((float)v)<midiZero?((midiZero-v)*maxRotation/midiZero):((127-v)*maxRotation/midiZero-maxRotation),
