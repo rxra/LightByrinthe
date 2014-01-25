@@ -28,16 +28,22 @@ public class Actor : LightReceiver {
 	private bool _ReachExit;
 	private bool _isDead;
 
+	private Animator anim;							// a reference to the animator on the character
+
 	// Use this for initialization
 	public override void Start () {
 
 		base.Start();
+
+		// initialising reference variables
+		anim = GetComponentInChildren<Animator>();					  
 
 		Speed = 0.4f;
 		CooldownCur = 0;
 		CooldownTimer = 10.0f;
 
 		_isDead = false;
+		anim.SetBool("die", false);				
 
 		InBlackArea = true;
 
@@ -89,6 +95,7 @@ public class Actor : LightReceiver {
 
 		_startTime = Time.time;
 		_lerp = true;
+		anim.SetInteger("walk", 1);				
 	}
 
 	public void RecomputeMap(Cell cell)
@@ -122,6 +129,7 @@ public class Actor : LightReceiver {
 		
 		_startTime = Time.time;
 		_lerp = true;
+		anim.SetInteger("walk", 1);				
 	}
 
 	// Update is called once per frame
@@ -167,6 +175,7 @@ public class Actor : LightReceiver {
 			}
 			else{
 				_lerp = false;
+				anim.SetInteger("walk", 0);				
 			}
 		}
 	}
@@ -192,6 +201,7 @@ public class Actor : LightReceiver {
 
 	protected void OnDead()
 	{
+		anim.SetBool("die", true);	
 	}
 
 	public void OnExit()
