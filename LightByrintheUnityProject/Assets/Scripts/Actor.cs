@@ -128,7 +128,7 @@ public class Actor : LightReceiver {
 				CurCell = NextCell;
 				NextCell = _level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).GetTransform().position + _zOffset;
 
-				_level.GetCellAt((int)Path[CurPathIdx-1].x,(int)Path[CurPathIdx-1].y).OnActorEnter(this);
+				_level.GetCellAt((int)Path[CurPathIdx-1].x,(int)Path[CurPathIdx-1].y).OnActorExit(this);
 				_level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).OnActorEnter(this);
 			}
 			else{
