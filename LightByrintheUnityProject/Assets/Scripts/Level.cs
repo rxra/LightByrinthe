@@ -18,14 +18,36 @@ public class Cell
 public class Level : MonoBehaviour {
 
 	public TextAsset TexLevel;
+	public Vector2 tileSize = new Vector2(64,64);
+	public Vector2 screenSizeRef = new Vector2(1024,768);
 
 	private List<Cell> Grid;
-	private int width;
-	private int height;
-	
+	public List<Light> Lights;
+	public int width;
+	public int height;
+
+	public float pixelToWorldRatio = 0;
+	public Vector2 scaleToReference;
+
+	public static Level instance = null;
+
+	void Awake()
+	{
+		if(!instance)
+			instance = this;
+
+		Grid = new List<Cell>();
+		Lights = new List<Light>();
+	}
+
 	void Start () 
 	{
-		Grid = new List<Cell>();
+	
+		pixelToWorldRatio = 2*Camera.main.orthographicSize/Screen.height;
+		scaleToReference = new Vector2(
+			(float)Screen.width/screenSizeRef.x,
+			(float)Screen.height/screenSizeRef.y
+			);
 
 		string[] lines = TexLevel.text.Split('\n');
 		string[] size = lines[0].Split(',');
@@ -33,28 +55,39 @@ public class Level : MonoBehaviour {
 		width 	= int.Parse(size[0]);
 		height 	= int.Parse(size[1]);
 
-		for(int j  = 1; j <= height; ++j)
+		for(int j  = 1; j <= height; j++)
 		{
 			string[] v = lines[j].Split(',');
-			for(int i = 0; i < width; ++i)
+			for(int i = 0; i < width; i++)
 			{
+				Debug.Log ("read : " + i);
 				int type = int.Parse(v[i]);
 
 				GameObject go = GameObject.CreatePrimitive(PrimitiveType.Quad);
 				
-				go.transform.position = new Vector3(i, height - j-1, 0);
+				go.transform.position = new Vector3(
+					(i*tileSize.x+tileSize.x/2-screenSizeRef.x/2)*pixelToWorldRatio*scaleToReference.x,
+					(screenSizeRef.y/2-j*tileSize.y)*pixelToWorldRatio*scaleToReference.x,
+					0);
+				Debug.Log ("x="+i + " : " + go.transform.position.x);
 				go.transform.parent = this.transform;
+				go.transform.localScale = new Vector3(
+					tileSize.x*pixelToWorldRatio*scaleToReference.x,
+					tileSize.y*pixelToWorldRatio*scaleToReference.y,
+					1
+				);
 
-				/*if(type == 1)
+
+				if(type == 1)
 				{
 					go.renderer.material.color = Color.green;
-				}*/
+				}
 
-				Grid.Add(new Cell(go, 0));
+				Grid.Add(new Cell(go, type));
 			}
 		}
 
-		transform.position = new Vector3(-(width*0.5f), -(height*0.5f)+1.5f, 2.0f);
+		//transform.position = new Vector3(-(width*0.5f), -(height*0.5f)+1.5f, 2.0f);
 
 		int lightsStart = height+2;
 		int nbLights = int.Parse(lines[height+1].Split(',')[0]);
@@ -63,10 +96,13 @@ public class Level : MonoBehaviour {
 		{
 			GameObject goLight = new GameObject("Light");
 			goLight.AddComponent<Light>();
+			MidiRotation mr = goLight.AddComponent<MidiRotation>() as MidiRotation;
+			mr.key = 9 + Lights.Count;
+			mr.button = MidiRotation.JButton.A_1 + Lights.Count;
 
 			string[] v = lines[i].Split(',');
 
-			Vector3 pos = new Vector3(int.Parse(v[0]), int.Parse(v[1]), -0.3f);
+			Vector3 pos = new Vector3(int.Parse(v[0]), int.Parse(v[1]), -0.4f);
 
 			float ox = 0.0f; 
 			float oy = 0.0f;
@@ -97,11 +133,20 @@ public class Level : MonoBehaviour {
 			goLight.light.spotAngle = angle;
 			goLight.light.intensity = intensity;
 			goLight.light.range = range;
+
+			Lights.Add(goLight.light);
 		}
 	}
 
-	Cell GetCellAt(int x, int y)
+	public Cell GetCellAt(int x, int y)
 	{
 		return Grid[x + width * y];
+	}
+
+	void Update()
+	{
+		if (Input.GetButton("A_1")) {
+			Debug.Log("b");
+		}
 	}
 }
