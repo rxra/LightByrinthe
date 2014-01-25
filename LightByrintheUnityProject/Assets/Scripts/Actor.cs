@@ -97,20 +97,35 @@ public class Actor : LightReceiver {
 
 		CurCell  = spawn.GetTransform().position + _zOffset;
 		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).GetTransform().position + _zOffset;
+		
 		CurPathIdx = 1;
 
 		_startTime = Time.time;
 		_lerp = true;
-		anim.SetInteger("walk", 1);				
+
+		Vector3 delta = NextCell - CurCell;
+		Debug.Log ("delta: " + delta);
+		int walk = 0;
+		if (delta.y<0) {
+			Debug.Log ("down");
+			walk = 3;
+		} else if (delta.x==0) {
+			Debug.Log ("up");
+			walk = 4;
+		} else if (delta.x<0) {
+			Debug.Log ("left");
+			walk = 1;
+		} else {
+			Debug.Log ("right");
+			walk = 2;
+		}
+		anim.SetInteger("walk", walk);				
 	}
 
 	public void RecomputeMap(Cell cell)
 	{
 		cell.SetCellType(1);
 
-
-		Debug.Log ("before : " + _mapNoded[cell.x, cell.y].X + " " + _mapNoded[cell.x, cell.y].Y);
-		Debug.Log ("before : " + _mapNoded[cell.x, cell.y].IsWall);
 		_mapNoded[cell.x, cell.y] = new SettlersEngine.MyPathNode()
 		{
 			
@@ -118,8 +133,6 @@ public class Actor : LightReceiver {
 			X = cell.x,
 			Y = cell.y,
 		};
-		Debug.Log ("after : " + _mapNoded[cell.x, cell.y].X + " " + _mapNoded[cell.x, cell.y].Y);
-		Debug.Log ("after : " + _mapNoded[cell.x, cell.y].IsWall);
 
 		IEnumerable<SettlersEngine.MyPathNode> map = getAstarPath(_level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).position, new Vector2(_level.width-1,_level.height-2), 2);
 		CurCell  = transform.position;
@@ -132,10 +145,27 @@ public class Actor : LightReceiver {
 		
 		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).GetTransform().position + _zOffset;
 		CurPathIdx = 1;
-		
+
 		_startTime = Time.time;
 		_lerp = true;
-		anim.SetInteger("walk", 1);				
+
+		Vector3 delta = NextCell - CurCell;
+		Debug.Log ("delta: " + delta);
+		int walk = 0;
+		if (delta.y<0) {
+			Debug.Log ("down");
+			walk = 3;
+		} else if (delta.x==0) {
+			Debug.Log ("up");
+			walk = 4;
+		} else if (delta.x<0) {
+			Debug.Log ("left");
+			walk = 1;
+		} else {
+			Debug.Log ("right");
+			walk = 2;
+		}
+		anim.SetInteger("walk", walk);				
 	}
 
 	// Update is called once per frame
@@ -180,6 +210,24 @@ public class Actor : LightReceiver {
 
 				_level.GetCellAt((int)Path[CurPathIdx-1].x,(int)Path[CurPathIdx-1].y).OnActorExit(this);
 				_level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).OnActorEnter(this);
+
+				Vector3 delta = NextCell - CurCell;
+				Debug.Log ("delta: " + delta);
+				int walk = 0;
+				if (delta.y<0) {
+					Debug.Log ("down");
+					walk = 3;
+				} else if (delta.x==0) {
+					Debug.Log ("up");
+					walk = 4;
+				} else if (delta.x<0) {
+					Debug.Log ("left");
+					walk = 1;
+				} else {
+					Debug.Log ("right");
+					walk = 2;
+				}
+				anim.SetInteger("walk", walk);				
 			}
 			else{
 				_lerp = false;

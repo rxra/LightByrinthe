@@ -142,7 +142,7 @@ public class Level : MonoBehaviour {
 			Vector3 offset = new Vector3(ox, oy, 0.0f); 
 
 			mr.axis = (int.Parse(v[4]) == 1) ? Vector3.up : Vector3.right;
-			Debug.Log (mr.axis);
+			//Debug.Log (mr.axis);
 			int angle = int.Parse(v[5]);
 			int intensity = int.Parse(v[6]);
 			int range = int.Parse(v[7]);
@@ -150,7 +150,7 @@ public class Level : MonoBehaviour {
 			Color color = new Color(int.Parse(v[8]),int.Parse(v[9]),int.Parse(v[10]));
 
 			Cell c = GetCellAt((int)pos[0], (int)pos[1]);
-			Debug.Log (color);
+			//Debug.Log (color);
 			//goLight.light.color = Color.white;
 			goLight.light.type 	= LightType.Spot;
 
