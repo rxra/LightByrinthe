@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CellButton : MonoBehaviour {
+public class CellButton : Cell {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public override void OnActorEnter(Actor a)
+	{
+		Debug.Log("Trigger Button!");
 	}
 }

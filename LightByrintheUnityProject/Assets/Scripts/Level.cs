@@ -91,6 +91,10 @@ public class Level : MonoBehaviour {
 				{
 					c = go.AddComponent<CellTrap>();
 				}
+				else if(type == 8)
+				{
+					c = go.AddComponent<CellButton>();
+				}
 				else
 				{
 					c = go.AddComponent<Cell>();
