@@ -22,21 +22,31 @@ public class Level : MonoBehaviour {
 	public Vector2 screenSizeRef = new Vector2(1024,768);
 
 	private List<Cell> Grid;
-	private int width;
-	private int height;
+	public List<Light> Lights;
+	public int width;
+	public int height;
 
-	private float pixelToWorldRatio = 0;
-	private Vector2 scaleToReference;
+	public float pixelToWorldRatio = 0;
+	public Vector2 scaleToReference;
+
+	public static Level instance = null;
+
+	void Awake()
+	{
+		if(!instance)
+			instance = this;
+
+		Grid = new List<Cell>();
+	}
 
 	void Start () 
 	{
+
 		pixelToWorldRatio = 2*Camera.main.orthographicSize/Screen.height;
 		scaleToReference = new Vector2(
 			(float)Screen.width/screenSizeRef.x,
 			(float)Screen.height/screenSizeRef.y
 			);
-
-		Grid = new List<Cell>();
 
 		string[] lines = TexLevel.text.Split('\n');
 		string[] size = lines[0].Split(',');
@@ -122,7 +132,7 @@ public class Level : MonoBehaviour {
 		}
 	}
 
-	Cell GetCellAt(int x, int y)
+	public Cell GetCellAt(int x, int y)
 	{
 		return Grid[x + width * y];
 	}
