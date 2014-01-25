@@ -28,6 +28,8 @@ public class Actor : LightReceiver {
 	private bool _ReachExit;
 	private bool _isDead;
 
+	private LifeBar _lifeBar;
+
 	private Animator anim;							// a reference to the animator on the character
 
 	// Use this for initialization
@@ -41,6 +43,8 @@ public class Actor : LightReceiver {
 		Speed = 0.4f;
 		CooldownCur = 0;
 		CooldownTimer = 10.0f;
+
+		_lifeBar = GetComponentInChildren<LifeBar>();
 
 		_isDead = false;
 		anim.SetBool("die", false);				
@@ -143,6 +147,8 @@ public class Actor : LightReceiver {
 		if(InBlackArea)
 		{
 			CooldownCur += Time.deltaTime;
+
+			_lifeBar.SetValue(1.0f-CooldownCur / CooldownTimer);
 			if(CooldownCur >= CooldownTimer)
 			{
 				_isDead = true;
@@ -189,6 +195,7 @@ public class Actor : LightReceiver {
 	protected override void OnLightEnter()
 	{
 		//renderer.material.color = Color.red;
+		_lifeBar.SetValue(1.0f);
 		InBlackArea = false;
 	}
 
