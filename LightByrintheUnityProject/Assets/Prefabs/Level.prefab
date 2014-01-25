@@ -43,10 +43,22 @@ MonoBehaviour:
   tileSize: {x: 64, y: 64}
   screenSizeRef: {x: 1024, y: 768}
   Lights: []
+  Actors: []
+  NbActors: 0
   width: 0
   height: 0
   pixelToWorldRatio: 0
   scaleToReference: {x: 0, y: 0}
+  TileSet:
+  - {fileID: 100000, guid: 822360a9213d63c49a2d7edff3c8d24f, type: 2}
+  - {fileID: 100000, guid: e87a79747e7690e48be9b0e9b8a8ca3e, type: 2}
+  - {fileID: 100000, guid: 7a760abc372be5549be3e12d331be1d5, type: 2}
+  - {fileID: 100000, guid: e87a79747e7690e48be9b0e9b8a8ca3e, type: 2}
+  - {fileID: 100000, guid: 92a2f76211657ff4491869081b55e961, type: 2}
+  - {fileID: 100000, guid: 9c7a826779eed67428219ab2fa88f846, type: 2}
+  - {fileID: 100000, guid: 08d15838b20d570459c2e110f02713c7, type: 2}
+  - {fileID: 100000, guid: 6b737ae381ad58f45b88138a581a15cf, type: 2}
+  - {fileID: 100000, guid: 79a0da50599c5d0478cc3f58b388677e, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
