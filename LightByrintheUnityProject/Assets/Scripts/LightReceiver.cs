@@ -38,9 +38,14 @@ public class LightReceiver : MonoBehaviour {
 			float GAngle 		= _level.Lights[i].spotAngle;
 			
 			Vector3 V = Vector3.Normalize(H-G);
-			
 
-			if(Vector3.Dot(V,D) > 0 && (Vector3.Angle(V,D) < GAngle) && (Dist < _level.Lights[i].range))
+			float r = _level.Lights[i].range;
+			float p = _level.Lights[i].transform.position.z;
+
+			float nr = (r+p) / r;
+			float na = nr * r;
+
+			if(Vector3.Dot(V,D) > 0 && (Vector3.Angle(V,D) < GAngle) && (Dist < _level.Lights[i].range*nr))
 				return true;
 		}
 		
