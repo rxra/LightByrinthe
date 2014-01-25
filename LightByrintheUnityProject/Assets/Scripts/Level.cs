@@ -8,8 +8,12 @@ public class Level : MonoBehaviour {
 	public Vector2 tileSize = new Vector2(64,64);
 	public Vector2 screenSizeRef = new Vector2(1024,768);
 
-	private List<Cell> Grid;
-	public List<Light> Lights;
+	private List<Cell> 	Grid;
+	public List<Light> 	Lights;
+	public List<Actor> 	Actors;
+
+	public int NbActors;
+
 	public int width;
 	public int height;
 
@@ -73,13 +77,22 @@ public class Level : MonoBehaviour {
 					1
 				);
 
+				Cell c;
 
+				if(type == 5)
+				{
+				 	c = go.AddComponent<CellSpawn>();
+				}
+				else
+				{
+					c = go.AddComponent<Cell>();
+				}
 				//if(type == 1)
 				//{
 				//	go.renderer.material.color = Color.green;
 				//}
 
-				Cell c = go.AddComponent<Cell>();
+				//Cell c = go.AddComponent<Cell>();
 				c.SetCellType(type);
 
 				Grid.Add(c);
@@ -114,12 +127,6 @@ public class Level : MonoBehaviour {
 			int angle = int.Parse(v[5]);
 			int intensity = int.Parse(v[6]);
 			int range = int.Parse(v[7]);
-			                       
-			/*Debug.Log (pos);
-			Debug.Log (offset);
-			Debug.Log (lookAt);
-			Debug.Log (angle);
-			Debug.Log (intensity);*/
 
 			Cell c = GetCellAt((int)pos[0], (int)pos[1]);
 
