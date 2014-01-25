@@ -149,8 +149,8 @@ public class Level : MonoBehaviour {
 			goLight.light.color = Color.white;
 			goLight.light.type 	= LightType.Spot;
 
-			goLight.transform.localRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-			goLight.transform.position = c.GetTransform().position + new Vector3(offset.x, offset.y, -0.15f);
+			goLight.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+			goLight.transform.position = c.GetTransform().position + new Vector3(offset.x, offset.y, -1f);
 			goLight.transform.parent = c.GetTransform().transform;
 			goLight.light.spotAngle = angle;
 			goLight.light.intensity = intensity;
