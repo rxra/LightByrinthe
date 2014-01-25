@@ -41,7 +41,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Sprites_Atlas_0
+    - name: Sprites_Mecha_Halo
       rect:
         serializedVersion: 2
         x: 0
@@ -49,35 +49,35 @@ TextureImporter:
         width: 57
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_Atlas_1
+      pivot: {x: .5, y: .5}
+    - name: Sprites_Mecha_Head
       rect:
         serializedVersion: 2
         x: 10
         y: 170
         width: 39
         height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_Atlas_2
+      alignment: 9
+      pivot: {x: .50000006, y: .0793521255}
+    - name: Sprites_Mecha_R_Feet
       rect:
         serializedVersion: 2
         x: 56
         y: 192
         width: 9
         height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_Atlas_3
+      alignment: 9
+      pivot: {x: .362052917, y: .80899632}
+    - name: Sprites_Mecha_L_Feet
       rect:
         serializedVersion: 2
         x: 72
         y: 192
         width: 9
         height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_Atlas_4
+      alignment: 9
+      pivot: {x: .637947083, y: .810381353}
+    - name: Sprites_Mecha_Base
       rect:
         serializedVersion: 2
         x: 57
@@ -85,6 +85,6 @@ TextureImporter:
         width: 25
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
