@@ -32,6 +32,8 @@ public class Actor : LightReceiver {
 
 	private Animator anim;							// a reference to the animator on the character
 
+	public AudioClip dieSound;
+
 	// Use this for initialization
 	public override void Start () {
 
@@ -208,7 +210,12 @@ public class Actor : LightReceiver {
 
 	protected void OnDead()
 	{
-		anim.SetBool("die", true);	
+		anim.SetBool("die", true);
+		audio.Stop();
+		audio.clip = dieSound;
+		audio.loop = false;
+		audio.volume = 1f;
+		audio.Play();
 	}
 
 	public void OnExit()
