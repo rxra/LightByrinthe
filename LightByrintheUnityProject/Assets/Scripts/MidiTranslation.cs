@@ -15,7 +15,7 @@ public class MidiTranslation : MonoBehaviour {
 	public JButton button = JButton.A_1;
 	public float jspeed = 20;
 	//public float maxTranslation = 2f;
-	public Vector2 maxTranslation = new Vector2(0.0f, 0.0f);
+	public Vector2 maxTranslation = new Vector2(2.0f, 2.0f);
 	public Vector3 axis = new Vector3(1,0,0);
 	
 	public bool midiEnabled = false;
@@ -36,13 +36,13 @@ public class MidiTranslation : MonoBehaviour {
 			int v = 0;
 			if (mManager.GetKeyVelocity(key, out v)) {
 				transform.position = initPos + axis * (((float)v>midiZero)?((midiZero-v)*maxTranslation.x/midiZero):((127-v)*maxTranslation.y/midiZero-maxTranslation.y));
-
+				Debug.Log (initPos + axis * (((float)v>midiZero)?((midiZero-v)*maxTranslation.x/midiZero):((127-v)*maxTranslation.y/midiZero-maxTranslation.y)));
 				/*transform.localRotation = Quaternion.Euler(
 					((float)v)<midiZero?((midiZero-v)*maxRotation/midiZero):((127-v)*maxRotation/midiZero-maxRotation),
 					initialeQ.eulerAngles.y,
 					initialeQ.eulerAngles.z);*/
 			} else {
-				transform.position = initPos;
+				//transform.position = initPos;
 			}
 		}/* else {
 			if (Input.GetButton(button.ToString())) {
