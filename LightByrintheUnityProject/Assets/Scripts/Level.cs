@@ -37,11 +37,12 @@ public class Level : MonoBehaviour {
 			instance = this;
 
 		Grid = new List<Cell>();
+		Lights = new List<Light>();
 	}
 
 	void Start () 
 	{
-
+	
 		pixelToWorldRatio = 2*Camera.main.orthographicSize/Screen.height;
 		scaleToReference = new Vector2(
 			(float)Screen.width/screenSizeRef.x,
@@ -98,7 +99,7 @@ public class Level : MonoBehaviour {
 
 			string[] v = lines[i].Split(',');
 
-			Vector3 pos = new Vector3(int.Parse(v[0]), int.Parse(v[1]), -0.3f);
+			Vector3 pos = new Vector3(int.Parse(v[0]), int.Parse(v[1]), -0.4f);
 
 			float ox = 0.0f; 
 			float oy = 0.0f;
@@ -129,6 +130,8 @@ public class Level : MonoBehaviour {
 			goLight.light.spotAngle = angle;
 			goLight.light.intensity = intensity;
 			goLight.light.range = range;
+
+			Lights.Add(goLight.light);
 		}
 	}
 

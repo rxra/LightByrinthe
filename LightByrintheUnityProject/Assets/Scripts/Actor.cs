@@ -83,6 +83,13 @@ public class Actor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if(IsInLight())
+		{
+			renderer.material.color = Color.red;
+		}
+		else {
+			renderer.material.color = Color.white;
+		}
 
 		if(transform.position.Equals(NextCell)==false) {
 			if(_lerp) {
@@ -108,12 +115,8 @@ public class Actor : MonoBehaviour {
 			}
 			else{
 				_lerp = false;
+				OnReachExit();
 			}
-		}
-
-		if(IsInLight())
-		{
-			renderer.material.color = Color.red;
 		}
 	}
 	
@@ -126,28 +129,33 @@ public class Actor : MonoBehaviour {
 
 	public bool IsInLight()
 	{
-		/*for(int i = 0; i< myLevel.Lights.Count; ++i)
+		for(int i = 0; i< _level.Lights.Count; ++i)
 		{
 			Vector3 H 			= transform.position;
-			Vector3 G 			= myLevel.Lights[i].transform.position;
-			Vector3 D 			= Vector3.Normalize(myLevel.Lights[i].transform.forward);
+			Vector3 G 			= _level.Lights[i].transform.position;
+			Vector3 D 			= Vector3.Normalize(_level.Lights[i].transform.forward);
 			
 			float Dist 			= Vector3.Distance(H, G); 
-			float GAngle 		= myLevel.Lights[i].spotAngle;
+			float GAngle 		= _level.Lights[i].spotAngle;
 			
 			Vector3 V = Vector3.Normalize(H-G);
 			
-			RaycastHit hit = new RaycastHit();
+			//RaycastHit hit = new RaycastHit();
 			
-			if(Physics.Raycast(G, V, out hit, Dist)) 
+			/*if(Physics.Raycast(G, V, out hit, Dist)) 
 			{
 				if(hit.collider.gameObject != this.gameObject)
 					return false;
-			}
+			}*/
 			//return false;
-			return Vector3.Dot(V,D) > 0 && (Vector3.Angle(V,D) < GAngle) && (Dist < myLevel.Lights[i].range);
-		}*/
+			if(Vector3.Dot(V,D) > 0 && (Vector3.Angle(V,D) < GAngle) && (Dist < _level.Lights[i].range))
+				return true;
+		}
 
 		return false;
+	}
+
+	public void OnReachExit()
+	{
 	}
 }
