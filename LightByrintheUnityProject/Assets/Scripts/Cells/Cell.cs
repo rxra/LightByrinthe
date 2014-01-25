@@ -5,6 +5,7 @@ public class Cell : LightReceiver {
 
 	private int 	_Type;
 	private Sprite _Sprite;
+	private Vector2 pos = Vector2.zero;
 
 	// Use this for initialization
 	public override void Start ()
@@ -16,6 +17,35 @@ public class Cell : LightReceiver {
 	public override void Update() 
 	{
 	
+	}
+
+	public int x
+	{
+		get
+		{
+			return (int)pos.x;
+		}
+	}
+
+	public int y
+	{
+		get
+		{
+			return (int)pos.y;
+		}
+	}
+
+	public Vector2 position
+	{
+		get
+		{
+			return pos;
+		}
+	}
+
+	public void SetPosition(int x, int y)
+	{
+		pos = new Vector2(x,y);
 	}
 
 	public void SetCellType(int t) 	{ _Type = t; }

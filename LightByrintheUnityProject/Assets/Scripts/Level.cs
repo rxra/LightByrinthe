@@ -110,6 +110,7 @@ public class Level : MonoBehaviour {
 
 				//Cell c = go.AddComponent<Cell>();
 				c.SetCellType(type);
+				c.SetPosition(i,j-1);
 
 				Grid.Add(c);
 			}
@@ -168,6 +169,15 @@ public class Level : MonoBehaviour {
 	public Cell GetCellAt(int x, int y)
 	{
 		return Grid[x + width * y];
+	}
+
+	public void ActivateButton(Actor a, Cell c)
+	{
+		foreach(Actor b in Actors) {
+			if (a!=b) {
+				b.RecomputeMap(c);
+			}
+		}
 	}
 
 	void Update()
