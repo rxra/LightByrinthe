@@ -19,12 +19,16 @@ public class Actor : MonoBehaviour {
 	private float _startTime;
 	private bool _lerp;
 
+	private Vector3 _zOffset;
+
 	private List<Vector2> Path;
 
 	// Use this for initialization
 	void Start () {
 
 		_Speed = 3.0f;
+
+		_zOffset = new Vector3(0,0,-0.2f);
 
 		_level = Level.instance;
 
@@ -61,15 +65,15 @@ public class Actor : MonoBehaviour {
 			}
 		}
 
-		IEnumerable<SettlersEngine.MyPathNode> map = getAstarPath(Vector2.zero, new Vector2(_level.width-1,_level.height-1), 2);
+		IEnumerable<SettlersEngine.MyPathNode> map = getAstarPath(Vector2.zero, new Vector2(_level.width-1,_level.height-2), 2);
 		foreach (SettlersEngine.MyPathNode node in map)
 		{
 			Path.Add(new Vector2(node.X, node.Y));
 			//_level.GetCellAt((int)node.X, (int)node.Y).Go.renderer.material.color = Color.green;
 		}
 
-		CurCell  = spawn.Go.transform.position;
-		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).Go.transform.position;
+		CurCell  = spawn.Go.transform.position + _zOffset;
+		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).Go.transform.position + _zOffset;
 		CurPathIdx = 1;
 
 		_startTime = Time.time;
@@ -80,7 +84,7 @@ public class Actor : MonoBehaviour {
 	void Update () 
 	{
 
-		if(transform.position.Equals(NextCell + new Vector3(0, 0, -1.0f))==false) {
+		if(transform.position.Equals(NextCell)==false) {
 			if(_lerp) {
 
 				float speed = 1;
@@ -88,7 +92,7 @@ public class Actor : MonoBehaviour {
 
 				float distCovered = (Time.time - _startTime) * speed;
 				float fracJourney = distCovered / _length;
-				transform.position = Vector3.Lerp(CurCell,NextCell,fracJourney) + new Vector3(0, 0, -1.0f);
+				transform.position = Vector3.Lerp(CurCell,NextCell,fracJourney);
 			}
 		}
 		else {
@@ -99,7 +103,7 @@ public class Actor : MonoBehaviour {
 
 				CurPathIdx++;
 				CurCell = NextCell;
-				NextCell = _level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).Go.transform.position;
+				NextCell = _level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).Go.transform.position + _zOffset;
 
 			}
 			else{

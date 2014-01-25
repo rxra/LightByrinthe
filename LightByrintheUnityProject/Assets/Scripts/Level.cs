@@ -82,7 +82,7 @@ public class Level : MonoBehaviour {
 					go.renderer.material.color = Color.green;
 				}
 
-				Grid.Add(new Cell(go, 0));
+				Grid.Add(new Cell(go, type));
 			}
 		}
 
