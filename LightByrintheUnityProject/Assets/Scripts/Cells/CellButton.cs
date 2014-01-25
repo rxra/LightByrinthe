@@ -8,8 +8,9 @@ public class CellButton : Cell {
 		Debug.Log("Trigger Button!");
 	}
 
-	public virtual void OnActorExit(Actor a)
+	public override void OnActorExit(Actor a)
 	{
+		Level.instance.ActivateButton(a,this);
 	}
 
 }

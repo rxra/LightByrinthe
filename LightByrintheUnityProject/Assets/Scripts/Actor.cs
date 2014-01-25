@@ -89,7 +89,40 @@ public class Actor : LightReceiver {
 		_startTime = Time.time;
 		_lerp = true;
 	}
-	
+
+	public void RecomputeMap(Cell cell)
+	{
+		cell.SetCellType(1);
+
+
+		Debug.Log ("before : " + _mapNoded[cell.x, cell.y].X + " " + _mapNoded[cell.x, cell.y].Y);
+		Debug.Log ("before : " + _mapNoded[cell.x, cell.y].IsWall);
+		_mapNoded[cell.x, cell.y] = new SettlersEngine.MyPathNode()
+		{
+			
+			IsWall = true,
+			X = cell.x,
+			Y = cell.y,
+		};
+		Debug.Log ("after : " + _mapNoded[cell.x, cell.y].X + " " + _mapNoded[cell.x, cell.y].Y);
+		Debug.Log ("after : " + _mapNoded[cell.x, cell.y].IsWall);
+
+		IEnumerable<SettlersEngine.MyPathNode> map = getAstarPath(_level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).position, new Vector2(_level.width-1,_level.height-2), 2);
+		CurCell  = transform.position;
+		Path.Clear();
+		foreach (SettlersEngine.MyPathNode node in map)
+		{
+			Path.Add(new Vector2(node.X, node.Y));
+			//_level.GetCellAt((int)node.X, (int)node.Y).Go.renderer.material.color = Color.green;
+		}
+		
+		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).GetTransform().position + _zOffset;
+		CurPathIdx = 1;
+		
+		_startTime = Time.time;
+		_lerp = true;
+	}
+
 	// Update is called once per frame
 	public override void Update () 
 	{
