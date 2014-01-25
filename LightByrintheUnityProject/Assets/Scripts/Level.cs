@@ -18,13 +18,24 @@ public class Cell
 public class Level : MonoBehaviour {
 
 	public TextAsset TexLevel;
+	public Vector2 tileSize = new Vector2(64,64);
+	public Vector2 screenSizeRef = new Vector2(1024,768);
 
 	private List<Cell> Grid;
 	private int width;
 	private int height;
-	
+
+	private float pixelToWorldRatio = 0;
+	private Vector2 scaleToReference;
+
 	void Start () 
 	{
+		pixelToWorldRatio = 2*Camera.main.orthographicSize/Screen.height;
+		scaleToReference = new Vector2(
+			(float)Screen.width/screenSizeRef.x,
+			(float)Screen.height/screenSizeRef.y
+			);
+
 		Grid = new List<Cell>();
 
 		string[] lines = TexLevel.text.Split('\n');
@@ -33,28 +44,39 @@ public class Level : MonoBehaviour {
 		width 	= int.Parse(size[0]);
 		height 	= int.Parse(size[1]);
 
-		for(int j  = 1; j <= height; ++j)
+		for(int j  = 1; j <= height; j++)
 		{
 			string[] v = lines[j].Split(',');
-			for(int i = 0; i < width; ++i)
+			for(int i = 0; i < width; i++)
 			{
+				Debug.Log ("read : " + i);
 				int type = int.Parse(v[i]);
 
 				GameObject go = GameObject.CreatePrimitive(PrimitiveType.Quad);
 				
-				go.transform.position = new Vector3(i, height - j-1, 0);
+				go.transform.position = new Vector3(
+					(i*tileSize.x+tileSize.x/2-screenSizeRef.x/2)*pixelToWorldRatio*scaleToReference.x,
+					(screenSizeRef.y/2-j*tileSize.y)*pixelToWorldRatio*scaleToReference.x,
+					0);
+				Debug.Log ("x="+i + " : " + go.transform.position.x);
 				go.transform.parent = this.transform;
+				go.transform.localScale = new Vector3(
+					tileSize.x*pixelToWorldRatio*scaleToReference.x,
+					tileSize.y*pixelToWorldRatio*scaleToReference.y,
+					1
+				);
 
-				/*if(type == 1)
+
+				if(type == 1)
 				{
 					go.renderer.material.color = Color.green;
-				}*/
+				}
 
 				Grid.Add(new Cell(go, 0));
 			}
 		}
 
-		transform.position = new Vector3(-(width*0.5f), -(height*0.5f)+1.5f, 2.0f);
+		//transform.position = new Vector3(-(width*0.5f), -(height*0.5f)+1.5f, 2.0f);
 
 		int lightsStart = height+2;
 		int nbLights = int.Parse(lines[height+1].Split(',')[0]);
