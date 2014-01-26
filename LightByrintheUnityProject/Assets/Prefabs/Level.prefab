@@ -35,7 +35,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 2505d624eb9951449add31f76949d8ab, type: 3}
   m_PlayOnAwake: 1
@@ -118,6 +118,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: 08d15838b20d570459c2e110f02713c7, type: 2}
   - {fileID: 100000, guid: 6b737ae381ad58f45b88138a581a15cf, type: 2}
   - {fileID: 100000, guid: 79a0da50599c5d0478cc3f58b388677e, type: 2}
+  - {fileID: 100000, guid: 6b737ae381ad58f45b88138a581a15cf, type: 2}
   firstSpawnTime: 2
   spawnTimeFreq: 5
 --- !u!114 &11400002
