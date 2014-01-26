@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour {
 	public GameObject[] mechas;
 	public float timeBeforeStart = 1;
 	public float step = 1;
+	public GameObject text;
 
 	// Use this for initialization
 	void Start ()
@@ -24,7 +25,7 @@ public class MainMenu : MonoBehaviour {
 
 	void Update()
 	{
-		if(Input.anyKeyDown) {
+		if(Input.anyKeyDown && text.activeSelf) {
 			Application.LoadLevel("TestMap");
 		}
 	}
