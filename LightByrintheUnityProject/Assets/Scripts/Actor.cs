@@ -84,7 +84,7 @@ public class Actor : LightReceiver {
 			for (int j = 0; j < _level.height; ++j)
 			{
 				//Debug.Log(i + "  " + j);
-				if(_level.GetCellAt(i,j).GetCellType() == 9 ||
+				if(_level.GetCellAt(i,j).GetCellType() == 8 ||
 				   _level.GetCellAt(i,j).GetCellType() == 10 ||
 				   _level.GetCellAt(i,j).GetCellType() == 5 ||
 				   _level.GetCellAt(i,j).GetCellType() == 6 ||
@@ -94,6 +94,7 @@ public class Actor : LightReceiver {
 				   _level.GetCellAt(i,j).GetCellType() == 14 ||
 				   _level.GetCellAt(i,j).GetCellType() == 15 ||
 				   _level.GetCellAt(i,j).GetCellType() == 16 ||
+				   _level.GetCellAt(i,j).GetCellType() > 21 ||
 				   _level.GetCellAt(i,j).GetCellType() > 22)
 				{
 					isWall = true;
@@ -152,7 +153,7 @@ public class Actor : LightReceiver {
 
 	public void RecomputeMap(Cell cell)
 	{
-		cell.SetCellType(1);
+		cell.SetCellType(9);
 
 		_mapNoded[cell.x, cell.y] = new SettlersEngine.MyPathNode()
 		{
