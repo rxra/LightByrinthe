@@ -31,7 +31,7 @@ public class Level : MonoBehaviour {
 	private float lastSpawnTime;
 
 	private float finishTimer = 0;
-	private float finishDuration = 4f;
+	private float finishDuration = 3f;
 
 	void Awake()
 	{
