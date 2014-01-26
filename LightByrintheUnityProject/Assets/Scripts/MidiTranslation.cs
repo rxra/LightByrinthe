@@ -13,7 +13,7 @@ public class MidiTranslation : MonoBehaviour {
 	
 	public int key = -1;
 	public JButton button = JButton.A_1;
-	public float jspeed = 20;
+	public float jspeed = 25;
 	public float kspeed = 5;
 	//public float maxTranslation = 2f;
 	public Vector2 maxTranslation = new Vector2(2.0f, 2.0f);
@@ -46,7 +46,7 @@ public class MidiTranslation : MonoBehaviour {
 			}*/
 		} else if (j360enabled) {
 			if (Input.GetButton(button.ToString())) {
-				transform.position = initPos + axis * maxTranslation.x * Input.GetAxis("Triggers_1")*Time.deltaTime*jspeed;
+				transform.position = initPos - axis * maxTranslation.x * Input.GetAxis("Triggers_1");
 			}
 		} else {
 			if (Input.GetKey(KeyCode.Alpha1)) {
