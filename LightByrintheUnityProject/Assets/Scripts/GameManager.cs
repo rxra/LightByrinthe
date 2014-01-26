@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour {
 	
 	}
 
+	public void RestartLevel()
+	{
+	}
+
 	public void GoToNextLevel()
 	{
 		if((int)_curLevel < Application.levelCount)

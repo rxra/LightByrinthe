@@ -213,7 +213,7 @@ public class Level : MonoBehaviour {
 			bool finished = true;
 			for(int i = 0; i < Actors.Count; ++i)
 			{
-				if(!Actors[i].Finished() && !Actors[i].Dead())
+				if(!Actors[i].Finished() ||  (!Actors[i].Finished() && !Actors[i].Dead()))
 				{
 					finished = false;
 				}
@@ -225,12 +225,15 @@ public class Level : MonoBehaviour {
 			}
 
 			if(finished) {
+				Debug.Log("Finished");
 				Finish();
 			}
 
 			if(dead)
 			{
+				Debug.Log("Dead");
 				// Game Over
+
 			}
 		}
 	}
