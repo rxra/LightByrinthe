@@ -93,23 +93,23 @@ public class Level : MonoBehaviour {
 
 				Cell c;
 
-				if(type == 5)
+				if(type == 18)
 				{
-				 	c = go.AddComponent<CellSpawn>();
+					c = go.AddComponent<CellSpawn>();
 				}
-				if(type == 6)
+				if(type == 19)
 				{
 					c = go.AddComponent<CellExit>();
 				}
-				else if(type == 7)
+				else if(type == 11 || type == 12)
 				{
 					c = go.AddComponent<CellTrap>();
 				}
-				else if(type == 8)
+				else if(type == 17)
 				{
 					c = go.AddComponent<CellButton>();
 				}
-				else if(type == 9)
+				else if(type == 10)
 				{
 					c = go.AddComponent<CellSwitch>();
 				}
@@ -117,7 +117,7 @@ public class Level : MonoBehaviour {
 				{
 					c = go.AddComponent<Cell>();
 				}
-			
+
 				c.SetCellType(type);
 				c.SetPosition(i,j-1);
 

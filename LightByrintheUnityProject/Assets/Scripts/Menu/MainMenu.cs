@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour {
 	void Update()
 	{
 		if(Input.anyKeyDown && text.activeSelf) {
-			Application.LoadLevel("TestMap");
+			Application.LoadLevel("Level1");
 		}
 	}
 }
