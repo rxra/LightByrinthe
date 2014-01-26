@@ -151,13 +151,18 @@ public class Level : MonoBehaviour {
 
 			Vector3 offset = new Vector3(ox, oy, 0.0f); 
 
-			mr.axis = (int.Parse(v[4]) == 1) ? Vector3.up : Vector3.right;
 			//Debug.Log (mr.axis);
 			int angle = int.Parse(v[5]);
 			int intensity = int.Parse(v[6]);
 			int range = int.Parse(v[7]);
 
 			Color color = new Color(int.Parse(v[8]),int.Parse(v[9]),int.Parse(v[10]));
+			Vector2 limits = new Vector2(int.Parse(v[11]),int.Parse(v[12]));                                           
+
+			mr.axis = (int.Parse(v[4]) == 1) ? Vector3.up : Vector3.right;
+
+			Debug.Log(limits);
+			mr.maxTranslation = limits;
 
 			Cell c = GetCellAt((int)pos[0], (int)pos[1]);
 			//Debug.Log (color);
