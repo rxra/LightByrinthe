@@ -427,6 +427,8 @@ MonoBehaviour:
   CooldownTimer: 0
   walkSound: {fileID: 8300000, guid: 56a86eb14ddf7d94886018304f3b3d82, type: 3}
   dieSound: {fileID: 8300000, guid: e1b83ff3c47eccd4b8b8a0a4abddc660, type: 3}
+  fxEnergieLow: {fileID: 100020}
+  fxEnergieUp: {fileID: 100018}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -641,9 +643,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayer: 2
+  m_SortingOrder: -1
+  m_SortingLayerID: 3177919827
   m_Sprite: {fileID: 21300034, guid: 12844b979c671504e8935a268ea284d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

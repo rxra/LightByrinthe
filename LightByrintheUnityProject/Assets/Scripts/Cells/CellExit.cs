@@ -12,8 +12,8 @@ public class CellExit : Cell
 	{
 		base.Start ();
 
-		//_overlay = (GameObject)GameObject.Instantiate(FXManager.instance.Get("Fxs_Finish_A"));
-		//_overlay.transform.parent = transform;
+		_overlay = (GameObject)GameObject.Instantiate(FXManager.instance.Get("OverlayExit"));
+		_overlay.transform.position = transform.position;
 		//_overlay.transform.position = transform.position; //new Vector3(transform.position.x, transform.position.y, -0.2f);
 		//_overlay.transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
 	}
