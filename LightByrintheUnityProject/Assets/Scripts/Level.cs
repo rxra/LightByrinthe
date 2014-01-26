@@ -71,7 +71,7 @@ public class Level : MonoBehaviour {
 			{
 				int type = int.Parse(v[i]);
 
-				GameObject go = (GameObject)GameObject.Instantiate(TileSet[type]);//(GameObject)GameObject.Instantiate(Tile_1);//GameObject.CreatePrimitive(PrimitiveType.Quad);
+				GameObject go = (GameObject)GameObject.Instantiate(GetTile (type));//(GameObject)GameObject.Instantiate(Tile_1);//GameObject.CreatePrimitive(PrimitiveType.Quad);
 
 				/*go.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(
 					i*tileSize.x+tileSize.x/2-screenSizeRef.x/2,
@@ -241,5 +241,17 @@ public class Level : MonoBehaviour {
 			GameManager.instance.GoToNextLevel();
 			finishTimer = 0;
 		}
+	}
+
+	public GameObject GetTile(int type)
+	{
+		for(int i = 0; i < TileSet.Count; ++i)
+		{
+			string name = "Tiles_64_" + (type-1);
+			if(TileSet[i].name == name)
+				return TileSet[i];
+		}
+
+		return TileSet[0];
 	}
 }
