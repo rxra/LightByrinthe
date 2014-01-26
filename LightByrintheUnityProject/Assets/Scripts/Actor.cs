@@ -249,6 +249,9 @@ public class Actor : LightReceiver {
 			CooldownCur += Time.deltaTime;
 
 			_lifeBar.SetValue(1.0f-CooldownCur / CooldownTimer);
+			if (_lifeBar.audio.isPlaying) {
+				_lifeBar.audio.Stop();
+			}
 			if(CooldownCur >= CooldownTimer)
 			{
 				_isDead = true;
@@ -262,6 +265,9 @@ public class Actor : LightReceiver {
 			}
 						
 			_lifeBar.SetValue(1.0f-CooldownCur / CooldownTimer);
+			if (!_lifeBar.audio.isPlaying) {
+				_lifeBar.audio.Play();
+			}
 
 			if (fxEnergieLow.activeSelf) {
 				fxEnergieLow.SetActive(false);
