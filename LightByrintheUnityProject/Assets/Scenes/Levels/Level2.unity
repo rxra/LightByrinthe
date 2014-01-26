@@ -255,11 +255,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba366282dddd97146bbe6c6398d7b927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TexLevel: {fileID: 4900000, guid: 8ff6448e6d6c7564c8bcd2dc1647e74c, type: 3}
+  TexLevel: {fileID: 4900000, guid: 9c8df7f5c4c06254eb1fc6aa6b5e47ca, type: 3}
   tileSize: {x: 64, y: 64}
   screenSizeRef: {x: 1024, y: 768}
   Lights: []
-  NbActors: 4
+  NbActors: 2
   actorPrefab: {fileID: 100000, guid: 9eca739b1437b544ebead601562f8eb5, type: 2}
   width: 0
   height: 0
@@ -353,7 +353,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
       propertyPath: TexLevel
       value: 
-      objectReference: {fileID: 4900000, guid: 8ff6448e6d6c7564c8bcd2dc1647e74c, type: 3}
+      objectReference: {fileID: 4900000, guid: 9c8df7f5c4c06254eb1fc6aa6b5e47ca, type: 3}
     - target: {fileID: 11400000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
       propertyPath: TileSet.Array.data[9]
       value: 
@@ -518,6 +518,10 @@ Prefab:
       propertyPath: TileSet.Array.data[8]
       value: 
       objectReference: {fileID: 100000, guid: c673d18431423eb4bac4976c5e210740, type: 2}
+    - target: {fileID: 11400000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
+      propertyPath: NbActors
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
   m_RootGameObject: {fileID: 677185154}
