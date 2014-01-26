@@ -43,6 +43,9 @@ public class Actor : LightReceiver {
 
 		base.Start();
 
+		if (_level==null)
+			return;
+
 		startTime = Time.time;
 		started = false;
 
@@ -184,6 +187,10 @@ public class Actor : LightReceiver {
 			return;
 
 		base.Update();
+
+		if (_level==null) {
+			return;
+		}
 
 		if (!started) {
 			if ((Time.time-startTime)>goTimer) {

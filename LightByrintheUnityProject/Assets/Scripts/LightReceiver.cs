@@ -14,6 +14,10 @@ public class LightReceiver : MonoBehaviour {
 	// Update is called once per frame
 	public virtual void Update () 
 	{
+		if (_level==null) {
+			return;
+		}
+
 		if(IsInLight())
 		{
 			if(!_lightEntered)
