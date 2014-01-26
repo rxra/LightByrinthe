@@ -20,7 +20,7 @@ public class CellExit : Cell
 
 	public override void Update()
 	{
-		//_overlay.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, Mathf.Sin(Time.time)+1.0f);
+		_overlay.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, Mathf.Sin(Time.time)+1.0f);
 	}
 
 	public override void OnActorEnter(Actor a)
