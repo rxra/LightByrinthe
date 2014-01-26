@@ -6,10 +6,11 @@ public class GameManager : MonoBehaviour {
 	public enum Levels
 	{
 		Level_1 = 1,
-		Level_2
+		Level_2,
+		Level_3
 	}
 	
-	private Levels _curLevel = Levels.Level_1;
+	private static Levels _curLevel = Levels.Level_1;
 
 	private static GameManager s_Instance = null;
 	public static GameManager instance
@@ -19,12 +20,15 @@ public class GameManager : MonoBehaviour {
 			return s_Instance;
 		}
 	}
-	
-	void Start () {
 
+	void Awake() {
 		s_Instance = this;
 		if(!GameObject.Find ("GameManager"))
 			GameObject.DontDestroyOnLoad(this);
+	}
+
+	void Start () {
+
 	}
 
 	public void Reset() 
@@ -43,13 +47,15 @@ public class GameManager : MonoBehaviour {
 
 	public void GoToNextLevel()
 	{
-		if((int)_curLevel < Application.levelCount)
+		Debug.Log(_curLevel + " " + Application.levelCount);
+		if((int)_curLevel < Application.levelCount-1)
 		{
-			Application.LoadLevel((int)_curLevel+1);
 			_curLevel++;
+			Application.LoadLevel((int)_curLevel);
 		}
 		else
 		{
+			Debug.Log ("Reset");
 			Reset();
 		}
 	}

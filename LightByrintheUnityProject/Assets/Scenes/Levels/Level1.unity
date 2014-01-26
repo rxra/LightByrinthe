@@ -296,6 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TexLevel: {fileID: 4900000, guid: 16b7f18c7f019fb439ab246ee24a659b, type: 3}
+  CookieTex: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
   tileSize: {x: 64, y: 64}
   screenSizeRef: {x: 1024, y: 768}
   Lights: []
@@ -382,6 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FXs:
   - {fileID: 100000, guid: 2eb2962bac4640745a92248ba4907da7, type: 2}
+  - {fileID: 100000, guid: ee7cb5a1752fd354cb61d1c64be25032, type: 2}
 --- !u!4 &1960579690
 Transform:
   m_ObjectHideFlags: 0
@@ -608,6 +610,10 @@ Prefab:
       propertyPath: LifeActor
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
+      propertyPath: CookieTex
+      value: 
+      objectReference: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
   m_RootGameObject: {fileID: 677185154}

@@ -32,7 +32,9 @@ public class MidiTranslation : MonoBehaviour {
 		midiEnabled = mManager!=null && mManager.enabled && mManager.devices>0;
 		j360enabled = Input.GetJoystickNames().Length>0&&Input.GetJoystickNames()[0].Contains("360")?true:false;
 	}
-	
+
+	private Vector3 backPos;
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -47,6 +49,14 @@ public class MidiTranslation : MonoBehaviour {
 		} else if (j360enabled) {
 			if (Input.GetButton(button.ToString())) {
 				transform.position = initPos - axis * maxTranslation.x * Input.GetAxis("Triggers_1");
+			}
+			else
+			{
+				if(!transform.position.Equals(initPos))
+				{
+					backPos = transform.position;
+					transform.position = Vector3.Lerp(backPos, initPos, 0.5f);
+				}
 			}
 		} else {
 			if (Input.GetKey(KeyCode.Alpha1)) {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Level : MonoBehaviour {
 
 	public TextAsset TexLevel;
+	public Texture CookieTex;
 
 	public Vector2 tileSize = new Vector2(64,64);
 	public Vector2 screenSizeRef = new Vector2(1024,768);
@@ -134,15 +135,27 @@ public class Level : MonoBehaviour {
 		int lightsStart = height+2;
 		int nbLights = int.Parse(lines[height+1].Split(',')[0]);
 
+		int lightCount = 0;
 		for(int i = lightsStart; i < lightsStart+nbLights; ++i)
 		{
 			GameObject goLight = new GameObject("Light");
-			goLight.AddComponent<Light>();
-			MidiTranslation mr = goLight.AddComponent<MidiTranslation>() as MidiTranslation;
-			mr.key = 9 + Lights.Count;
-			mr.button = MidiTranslation.JButton.A_1 + Lights.Count;
-	
+
 			string[] v = lines[i].Split(',');
+
+			goLight.AddComponent<Light>();
+
+			if(i > lightsStart)
+			{
+				MidiTranslation mr = goLight.AddComponent<MidiTranslation>() as MidiTranslation;
+				mr.key = 9 + lightCount;
+				mr.button = MidiTranslation.JButton.A_1 + lightCount;
+
+				mr.axis = (int.Parse(v[4]) == 1) ? Vector3.up : Vector3.right;
+				Vector2 limits = new Vector2(int.Parse(v[11]),int.Parse(v[12]));
+
+				mr.maxTranslation = limits;
+				lightCount++;
+			}
 
 			Vector3 pos = new Vector3(int.Parse(v[0]), int.Parse(v[1]), -0.4f);
 
@@ -160,12 +173,7 @@ public class Level : MonoBehaviour {
 			int range = int.Parse(v[7]);
 
 			Color color = new Color(int.Parse(v[8]),int.Parse(v[9]),int.Parse(v[10]));
-			Vector2 limits = new Vector2(int.Parse(v[11]),int.Parse(v[12]));                                           
-
-			mr.axis = (int.Parse(v[4]) == 1) ? Vector3.up : Vector3.right;
-
-			Debug.Log(limits);
-			mr.maxTranslation = limits;
+                                          
 
 			Cell c = GetCellAt((int)pos[0], (int)pos[1]);
 			//Debug.Log (color);
@@ -179,6 +187,7 @@ public class Level : MonoBehaviour {
 			goLight.light.intensity = intensity;
 			goLight.light.range = range;
 			goLight.light.color = color;
+			goLight.light.cookie = CookieTex;
 
 			Lights.Add(goLight.light);
 		}
@@ -221,9 +230,10 @@ public class Level : MonoBehaviour {
 			bool finished = true;
 			for(int i = 0; i < Actors.Count; ++i)
 			{
-				if(!Actors[i].Finished() ||  (!Actors[i].Finished() && !Actors[i].Dead()))
+				if(!Actors[i].Finished())
 				{
-					finished = false;
+					if(!Actors[i].Dead())
+						finished = false;
 				}
 
 				if(!Actors[i].Dead())
@@ -233,7 +243,6 @@ public class Level : MonoBehaviour {
 			}
 
 			if(finished) {
-
 				Finish();
 			}
 
@@ -242,7 +251,6 @@ public class Level : MonoBehaviour {
 				deadTimer += Time.deltaTime;
 				if(deadTimer >= deadDuration)
 				{
-					// Reach Next Level
 					GameManager.instance.Reset();
 					deadTimer = 0;
 				}
