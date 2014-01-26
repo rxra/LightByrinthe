@@ -201,8 +201,8 @@ TextureImporter:
         y: 68
         width: 41
         height: 40
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: Sprites_Mecha_Emit_02
       rect:
         serializedVersion: 2
@@ -210,8 +210,8 @@ TextureImporter:
         y: 67
         width: 41
         height: 40
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: Sprites_Mecha_Emit_03
       rect:
         serializedVersion: 2
@@ -219,8 +219,8 @@ TextureImporter:
         y: 67
         width: 41
         height: 42
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: Sprites_Mecha_Emit_04
       rect:
         serializedVersion: 2
@@ -228,8 +228,8 @@ TextureImporter:
         y: 67
         width: 41
         height: 44
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: Sprites_Mecha_Absorb_05
       rect:
         serializedVersion: 2
@@ -246,8 +246,8 @@ TextureImporter:
         y: 16
         width: 41
         height: 47
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: Sprites_Mecha_Emit_06
       rect:
         serializedVersion: 2
@@ -255,8 +255,8 @@ TextureImporter:
         y: 15
         width: 41
         height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: Sprites_Mecha_Emit_07
       rect:
         serializedVersion: 2
@@ -264,8 +264,8 @@ TextureImporter:
         y: 15
         width: 41
         height: 49
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: Sprites_Mecha_Emit_08
       rect:
         serializedVersion: 2
@@ -273,8 +273,8 @@ TextureImporter:
         y: 15
         width: 41
         height: 50
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
     - name: Sprites_Mecha_Emit_09
       rect:
         serializedVersion: 2
@@ -282,7 +282,7 @@ TextureImporter:
         y: 15
         width: 41
         height: 50
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
   spritePackingTag: 
   userData: 
