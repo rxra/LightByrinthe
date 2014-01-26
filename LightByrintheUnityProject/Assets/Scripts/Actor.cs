@@ -247,7 +247,6 @@ public class Actor : LightReceiver {
 		//renderer.material.color = Color.red;
 		_lifeBar.SetValue(1.0f);
 		InBlackArea = false;
-		Debug.Log("LightEnter");
 	}
 
 	protected override void OnLightExit()
@@ -255,7 +254,6 @@ public class Actor : LightReceiver {
 		//renderer.material.color = Color.white;
 		InBlackArea = true;
 		CooldownCur = 0;
-		Debug.Log("LightExit");
 	}
 
 	protected void OnDead()
@@ -280,6 +278,6 @@ public class Actor : LightReceiver {
 
 	public bool Finished()
 	{
-		return _ReachExit;
+		return _ReachExit && !_lerp;
 	}
 }
