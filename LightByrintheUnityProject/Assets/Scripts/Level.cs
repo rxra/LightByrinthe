@@ -15,6 +15,7 @@ public class Level : MonoBehaviour {
 
 	public int NbActors;
 	public GameObject actorPrefab;
+	public float LifeActor;
 
 	public int width;
 	public int height;
@@ -194,12 +195,14 @@ public class Level : MonoBehaviour {
 		if (Actors.Count==0 && NbActors>0) {
 			GameObject actor = GameObject.Instantiate(actorPrefab) as GameObject;
 			actor.GetComponent<Actor>().goTimer = goTimer;
+			actor.GetComponent<Actor>().CooldownTimer = LifeActor;
 			Actors.Add (actor.GetComponent<Actor>());
 			lastSpawnTime = Time.time;
 		} else if (Actors.Count<NbActors) {
 			if ((Time.time-lastSpawnTime)>spawnTimeFreq) {
 				GameObject actor = GameObject.Instantiate(actorPrefab) as GameObject;
 				actor.GetComponent<Actor>().goTimer = goTimer;
+				actor.GetComponent<Actor>().CooldownTimer = LifeActor;
 				Actors.Add (actor.GetComponent<Actor>());
 				lastSpawnTime = Time.time;
 			}
