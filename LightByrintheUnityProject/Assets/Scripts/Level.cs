@@ -30,6 +30,9 @@ public class Level : MonoBehaviour {
 	public float spawnTimeFreq = 3f;
 	private float lastSpawnTime;
 
+	private float finishTimer = 0;
+	private float finishDuration = 3f;
+
 	void Awake()
 	{
 		if(!GameObject.Find("GameManager"))
@@ -207,27 +210,36 @@ public class Level : MonoBehaviour {
 			bool finished = true;
 			for(int i = 0; i < Actors.Count; ++i)
 			{
-				if(!Actors[i].Finished())
+				if(!Actors[i].Finished() && !Actors[i].Dead())
 				{
 					finished = false;
 				}
 
-				if(!Actors[i].Dead ())
+				if(!Actors[i].Dead())
 				{
 					dead = false;
 				}
 			}
 
-			if(finished)
-			{
-				// Reach Next Level
-				GameManager.instance.GoToNextLevel();
+			if(finished) {
+				Finish();
 			}
 
 			if(dead)
 			{
 				// Game Over
 			}
+		}
+	}
+
+	public void Finish()
+	{
+		finishTimer += Time.deltaTime;
+		if(finishTimer >= finishDuration)
+		{
+			// Reach Next Level
+			GameManager.instance.GoToNextLevel();
+			finishTimer = 0;
 		}
 	}
 }
