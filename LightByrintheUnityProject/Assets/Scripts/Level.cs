@@ -26,8 +26,8 @@ public class Level : MonoBehaviour {
 
 	public List<GameObject> TileSet;
 
-	public float firstSpawnTime = 2f;
-	public float spawnTimeFreq = 5f;
+	public float goTimer = 2f;
+	public float spawnTimeFreq = 3f;
 	private float lastSpawnTime;
 
 	void Awake()
@@ -189,14 +189,14 @@ public class Level : MonoBehaviour {
 	void Update()
 	{
 		if (Actors.Count==0 && NbActors>0) {
-			if ((Time.time-lastSpawnTime)>firstSpawnTime) {
-				GameObject actor = GameObject.Instantiate(actorPrefab) as GameObject;
-				Actors.Add (actor.GetComponent<Actor>());
-				lastSpawnTime = Time.time;
-			}
+			GameObject actor = GameObject.Instantiate(actorPrefab) as GameObject;
+			actor.GetComponent<Actor>().goTimer = goTimer;
+			Actors.Add (actor.GetComponent<Actor>());
+			lastSpawnTime = Time.time;
 		} else if (Actors.Count<NbActors) {
 			if ((Time.time-lastSpawnTime)>spawnTimeFreq) {
 				GameObject actor = GameObject.Instantiate(actorPrefab) as GameObject;
+				actor.GetComponent<Actor>().goTimer = goTimer;
 				Actors.Add (actor.GetComponent<Actor>());
 				lastSpawnTime = Time.time;
 			}

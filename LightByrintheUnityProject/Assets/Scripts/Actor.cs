@@ -6,6 +6,9 @@ using System.Linq;
 public class Actor : LightReceiver {
 	
 	public SettlersEngine.MyPathNode[,] _mapNoded;
+	public float goTimer;
+	private float startTime;
+	private bool started = false;
 	
 	private Vector3 CurCell;
 	private Vector3 NextCell;
@@ -32,12 +35,16 @@ public class Actor : LightReceiver {
 
 	private Animator anim;							// a reference to the animator on the character
 
+	public AudioClip walkSound;
 	public AudioClip dieSound;
 
 	// Use this for initialization
 	public override void Start () {
 
 		base.Start();
+
+		startTime = Time.time;
+		started = false;
 
 		// initialising reference variables
 		anim = GetComponentInChildren<Animator>();					  
@@ -63,12 +70,10 @@ public class Actor : LightReceiver {
 		//Debug.Log (spawn.Go.transform.position);
 		transform.position = spawn.GetTransform().position - new Vector3(0, 0, -1.0f);
 
-		/*transform.localScale = new Vector3(
-			_level.tileSize.x*_level.pixelToWorldRatio*_level.scaleToReference.x,
-			_level.tileSize.y*_level.pixelToWorldRatio*_level.scaleToReference.y,
-			1.0f
-			);
-*/
+	}
+
+	public void StartPath(Cell spawn)
+	{
 		bool isWall = false;
 		_mapNoded = new SettlersEngine.MyPathNode[_level.width, _level.height];
 		for (int i = 0; i < _level.width; ++i)
@@ -80,29 +85,29 @@ public class Actor : LightReceiver {
 				//Debug.Log(isWall);
 				_mapNoded[i, j] = new SettlersEngine.MyPathNode()
 				{
-
+					
 					IsWall = isWall,
 					X = i,
 					Y = j,
 				};
 			}
 		}
-
+		
 		IEnumerable<SettlersEngine.MyPathNode> map = getAstarPath(Vector2.zero, new Vector2(_level.width-1,_level.height-2), 2);
 		foreach (SettlersEngine.MyPathNode node in map)
 		{
 			Path.Add(new Vector2(node.X, node.Y));
 			//_level.GetCellAt((int)node.X, (int)node.Y).Go.renderer.material.color = Color.green;
 		}
-
+		
 		CurCell  = spawn.GetTransform().position + _zOffset;
 		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).GetTransform().position + _zOffset;
 		
 		CurPathIdx = 1;
-
+		
 		_startTime = Time.time;
 		_lerp = true;
-
+		
 		Vector3 delta = NextCell - CurCell;
 		Debug.Log ("delta: " + delta);
 		int walk = 0;
@@ -119,7 +124,11 @@ public class Actor : LightReceiver {
 			Debug.Log ("right");
 			walk = 2;
 		}
-		anim.SetInteger("walk", walk);				
+		anim.SetInteger("walk", walk);
+		audio.clip = walkSound;
+		audio.loop = true;
+		audio.Play();
+		started = true;
 	}
 
 	public void RecomputeMap(Cell cell)
@@ -165,7 +174,7 @@ public class Actor : LightReceiver {
 			Debug.Log ("right");
 			walk = 2;
 		}
-		anim.SetInteger("walk", walk);				
+		anim.SetInteger("walk", walk);
 	}
 
 	// Update is called once per frame
@@ -175,6 +184,12 @@ public class Actor : LightReceiver {
 			return;
 
 		base.Update();
+
+		if (!started) {
+			if ((Time.time-startTime)>goTimer) {
+				StartPath(_level.GetCellAt(0,0));
+			}
+		}
 
 		if(InBlackArea)
 		{
@@ -227,11 +242,12 @@ public class Actor : LightReceiver {
 					Debug.Log ("right");
 					walk = 2;
 				}
-				anim.SetInteger("walk", walk);				
+				anim.SetInteger("walk", walk);	
 			}
 			else{
 				_lerp = false;
 				anim.SetInteger("walk", 0);				
+				audio.Stop();
 			}
 		}
 	}
