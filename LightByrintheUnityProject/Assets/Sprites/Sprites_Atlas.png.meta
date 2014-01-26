@@ -35,7 +35,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 115
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -284,5 +284,14 @@ TextureImporter:
         height: 50
       alignment: 7
       pivot: {x: .5, y: 0}
+    - name: Sprites_Mecha_GreenHalo
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 214
+        width: 57
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
