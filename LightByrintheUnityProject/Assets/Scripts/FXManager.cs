@@ -18,7 +18,10 @@ public class FXManager : MonoBehaviour {
 	void Awake()
 	{
 		s_Instance = this;
-		DontDestroyOnLoad(gameObject);
+		if(!GameObject.Find("FXManager"))
+		{
+			DontDestroyOnLoad(gameObject);
+		}
 	}
 
 	public GameObject Get(string name)

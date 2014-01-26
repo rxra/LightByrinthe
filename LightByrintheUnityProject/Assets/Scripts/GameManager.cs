@@ -23,7 +23,14 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 
 		s_Instance = this;
-		GameObject.DontDestroyOnLoad(this);
+		if(!GameObject.Find ("GameManager"))
+			GameObject.DontDestroyOnLoad(this);
+	}
+
+	public void Reset() 
+	{
+		_curLevel = Levels.Level_1;
+		Application.LoadLevel("MainMenu");
 	}
 
 	void Update () {
@@ -43,7 +50,7 @@ public class GameManager : MonoBehaviour {
 		}
 		else
 		{
-			// Game is finished
+			Reset();
 		}
 	}
 }

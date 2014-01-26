@@ -34,6 +34,9 @@ public class Level : MonoBehaviour {
 	private float finishTimer = 0;
 	private float finishDuration = 3f;
 
+	private float deadTimer = 0;
+	private float deadDuration = 4f;
+
 	void Awake()
 	{
 		if(!GameObject.Find("GameManager"))
@@ -230,15 +233,19 @@ public class Level : MonoBehaviour {
 			}
 
 			if(finished) {
-				Debug.Log("Finished");
+
 				Finish();
 			}
 
 			if(dead)
 			{
-				Debug.Log("Dead");
-				// Game Over
-
+				deadTimer += Time.deltaTime;
+				if(deadTimer >= deadDuration)
+				{
+					// Reach Next Level
+					GameManager.instance.Reset();
+					deadTimer = 0;
+				}
 			}
 		}
 	}
