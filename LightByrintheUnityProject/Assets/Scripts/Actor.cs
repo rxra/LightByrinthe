@@ -134,11 +134,11 @@ public class Actor : LightReceiver {
 		foreach (SettlersEngine.MyPathNode node in map)
 		{
 			Path.Add(new Vector2(node.X, node.Y));
-			//_level.GetCellAt((int)node.X, (int)node.Y).Go.renderer.material.color = Color.green;
+			//_level.GetCellAt((int)node.X, (int)node.Y).renderer.material.color = Color.green;
 		}
 		
 		CurCell  = spawn.GetTransform().position + _zOffset;
-		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).GetTransform().position + _zOffset;
+		NextCell = _level.GetCellAt((int)Path[1].x, (int)Path[1].y).GetTransform().position + _zOffset;
 		
 		CurPathIdx = 1;
 		
