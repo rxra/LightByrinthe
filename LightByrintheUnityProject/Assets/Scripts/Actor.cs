@@ -189,7 +189,7 @@ public class Actor : LightReceiver {
 			//_level.GetCellAt((int)node.X, (int)node.Y).Go.renderer.material.color = Color.green;
 		}
 		
-		NextCell = _level.GetCellAt((int)Path[2].x, (int)Path[2].y).GetTransform().position + _zOffset;
+		NextCell = _level.GetCellAt((int)Path[1].x, (int)Path[1].y).GetTransform().position + _zOffset;
 		CurPathIdx = 1;
 
 		_startTime = Time.time;

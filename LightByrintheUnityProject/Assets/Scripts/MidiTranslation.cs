@@ -39,7 +39,7 @@ public class MidiTranslation : MonoBehaviour {
 		if (midiEnabled) {
 			int v = 0;
 			if (mManager.GetKeyVelocity(key, out v)) {
-				transform.position = initPos + axis * (((float)v>midiZero)?((midiZero-v)*maxTranslation.x/midiZero):((127-v)*maxTranslation.y/midiZero-maxTranslation.y));
+				transform.position = initPos - axis * (((float)v>midiZero)?((midiZero-v)*maxTranslation.x/midiZero):((127-v)*maxTranslation.y/midiZero-maxTranslation.y));
 				Debug.Log (initPos + axis * (((float)v>midiZero)?((midiZero-v)*maxTranslation.x/midiZero):((127-v)*maxTranslation.y/midiZero-maxTranslation.y)));
 			}/* else {
 				//transform.position = initPos;

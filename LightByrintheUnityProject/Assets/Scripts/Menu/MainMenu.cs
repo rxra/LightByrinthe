@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour {
 	void Update()
 	{
 		if(Input.anyKeyDown && text.activeSelf) {
+			text.audio.Play();
 			mainAudio.clip = mainClip;
 			mainAudio.Play();
 			Application.LoadLevel("Level1");
