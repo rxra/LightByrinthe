@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Level : MonoBehaviour {
 
 	public TextAsset TexLevel;
+
 	public Vector2 tileSize = new Vector2(64,64);
 	public Vector2 screenSizeRef = new Vector2(1024,768);
 
@@ -103,12 +104,7 @@ public class Level : MonoBehaviour {
 				{
 					c = go.AddComponent<Cell>();
 				}
-				//if(type == 1)
-				//{
-				//	go.renderer.material.color = Color.green;
-				//}
-
-				//Cell c = go.AddComponent<Cell>();
+			
 				c.SetCellType(type);
 				c.SetPosition(i,j-1);
 
@@ -215,6 +211,7 @@ public class Level : MonoBehaviour {
 			if(finished)
 			{
 				// Reach Next Level
+				GameManager.instance.GoToNextLevel();
 			}
 
 			if(dead)
