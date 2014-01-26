@@ -233,11 +233,11 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 56a86eb14ddf7d94886018304f3b3d82, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: .25
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -310,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CooldownCur: 0
   CooldownTimer: 0
+  walkSound: {fileID: 8300000, guid: 56a86eb14ddf7d94886018304f3b3d82, type: 3}
   dieSound: {fileID: 8300000, guid: e1b83ff3c47eccd4b8b8a0a4abddc660, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
