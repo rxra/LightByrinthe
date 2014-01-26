@@ -32,6 +32,12 @@ public class Level : MonoBehaviour {
 
 	void Awake()
 	{
+		if(!GameObject.Find("GameManager"))
+		{
+			GameObject go = new GameObject("GameManager");
+			go.AddComponent<GameManager>();
+		}
+
 		if(!instance)
 			instance = this;
 
@@ -99,6 +105,10 @@ public class Level : MonoBehaviour {
 				else if(type == 8)
 				{
 					c = go.AddComponent<CellButton>();
+				}
+				else if(type == 9)
+				{
+					c = go.AddComponent<CellSwitch>();
 				}
 				else
 				{

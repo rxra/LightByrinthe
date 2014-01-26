@@ -7,18 +7,6 @@ public class Cell : LightReceiver {
 	private Sprite _Sprite;
 	private Vector2 pos = Vector2.zero;
 
-	// Use this for initialization
-	public override void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	public override void Update() 
-	{
-	
-	}
-
 	public int x
 	{
 		get
@@ -64,6 +52,14 @@ public class Cell : LightReceiver {
 	}
 
 	public virtual void OnActorExit(Actor a)
+	{
+	}
+
+	protected override void OnLightEnter()
+	{
+	}
+	
+	protected override void OnLightExit()
 	{
 	}
 }

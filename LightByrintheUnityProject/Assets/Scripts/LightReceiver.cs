@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LightReceiver : MonoBehaviour {
 
-	private bool _lightEntered;
+	protected bool _lightEntered;
 	protected Level _level;
 	// Use this for initialization
 	public virtual void Start () {
@@ -16,13 +16,19 @@ public class LightReceiver : MonoBehaviour {
 	{
 		if(IsInLight())
 		{
-			OnLightEnter();
-			_lightEntered = true;
+			if(!_lightEntered)
+			{
+				OnLightEnter();
+				_lightEntered = true;
+			}
 		}
-		else if(_lightEntered)
+		else
 		{
-			OnLightExit();
-			_lightEntered = false;
+			if(_lightEntered)
+			{
+				OnLightExit();
+				_lightEntered = false;
+			}
 		}
 	}
 
@@ -43,9 +49,8 @@ public class LightReceiver : MonoBehaviour {
 			float p = _level.Lights[i].transform.position.z;
 
 			float nr = (r+p) / r;
-			float na = nr * r;
 
-			if(Vector3.Dot(V,D) > 0 && (Vector3.Angle(V,D) < GAngle) && (Dist < _level.Lights[i].range*nr))
+			if(Vector3.Dot(V,D) > 0 && (Vector3.Angle(V,D) < GAngle) && (Dist < (_level.Lights[i].range*nr)+0.05f))
 				return true;
 		}
 		
