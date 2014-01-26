@@ -261,6 +261,7 @@ MonoBehaviour:
   Lights: []
   NbActors: 1
   actorPrefab: {fileID: 100000, guid: 9eca739b1437b544ebead601562f8eb5, type: 2}
+  LifeActor: 0
   width: 0
   height: 0
   pixelToWorldRatio: 0
