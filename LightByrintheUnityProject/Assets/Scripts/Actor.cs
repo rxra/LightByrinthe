@@ -358,6 +358,8 @@ public class Actor : LightReceiver {
 	{
 		_ReachExit = true;
 		_lifeBar.SetValue(1);
+		fxEnergieUp.SetActive(false);
+		fxEnergieLow.SetActive(false);
 	}
 
 	public bool Dead()
