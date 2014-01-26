@@ -261,6 +261,7 @@ MonoBehaviour:
   Lights: []
   NbActors: 4
   actorPrefab: {fileID: 100000, guid: 9eca739b1437b544ebead601562f8eb5, type: 2}
+  LifeActor: 10
   width: 0
   height: 0
   pixelToWorldRatio: 0
@@ -518,6 +519,10 @@ Prefab:
       propertyPath: TileSet.Array.data[8]
       value: 
       objectReference: {fileID: 100000, guid: c673d18431423eb4bac4976c5e210740, type: 2}
+    - target: {fileID: 11400000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
+      propertyPath: LifeActor
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
   m_RootGameObject: {fileID: 677185154}

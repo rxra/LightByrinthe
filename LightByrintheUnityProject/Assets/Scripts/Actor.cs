@@ -54,7 +54,7 @@ public class Actor : LightReceiver {
 
 		Speed = 0.4f;
 		CooldownCur = 0;
-		CooldownTimer = 10.0f;
+		//CooldownTimer = 10.0f;
 
 		_lifeBar = GetComponentInChildren<LifeBar>();
 
@@ -223,6 +223,11 @@ public class Actor : LightReceiver {
 			return;
 		}
 
+		if (Finished()) {
+			_lifeBar.SetValue(1);
+			return;
+		}
+
 		if (!started) {
 			if ((Time.time-startTime)>goTimer) {
 				StartPath(_level.GetCellAt(0,0));
@@ -239,6 +244,13 @@ public class Actor : LightReceiver {
 				_isDead = true;
 				OnDead();
 			}
+		} else {
+			CooldownCur -= Time.deltaTime;
+			if (CooldownCur<0) {
+				CooldownCur = 0;
+			}
+			
+			_lifeBar.SetValue(1.0f-CooldownCur / CooldownTimer);
 		}
 
 		if(transform.position.Equals(NextCell)==false) {
@@ -299,7 +311,6 @@ public class Actor : LightReceiver {
 	protected override void OnLightEnter()
 	{
 		//renderer.material.color = Color.red;
-		_lifeBar.SetValue(1.0f);
 		InBlackArea = false;
 	}
 
@@ -307,7 +318,6 @@ public class Actor : LightReceiver {
 	{
 		//renderer.material.color = Color.white;
 		InBlackArea = true;
-		CooldownCur = 0;
 	}
 
 	protected void OnDead()
@@ -323,6 +333,7 @@ public class Actor : LightReceiver {
 	public void OnExit()
 	{
 		_ReachExit = true;
+		_lifeBar.SetValue(1);
 	}
 
 	public bool Dead()
