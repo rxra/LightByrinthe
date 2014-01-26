@@ -119,7 +119,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: 6b737ae381ad58f45b88138a581a15cf, type: 2}
   - {fileID: 100000, guid: 79a0da50599c5d0478cc3f58b388677e, type: 2}
   goTimer: 2
-  spawnTimeFreq: 5
+  spawnTimeFreq: 3
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
