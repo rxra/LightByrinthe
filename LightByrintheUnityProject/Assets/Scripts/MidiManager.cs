@@ -28,6 +28,14 @@ public class MidiManager : MonoBehaviour {
 		}
 	}
 
+	public int devices
+	{
+		get
+		{
+			return _initialized?midiInput.devices:0;
+		}
+	}
+
 	public bool GetKeyVelocity(int key, out int velocity)
 	{
 		lock (midiInput.lockThis)

@@ -41,7 +41,15 @@ public class MIDIInput
 	
 	[DllImport ("MIDIPlugin")]
 	private static extern bool CloseMIDI();
-	
+
+	public int devices
+	{
+		get
+		{
+			return GetMIDIDevices();
+		}
+	}
+
 	// Use this for initialization
 	public bool Initialise () 
 	{

@@ -30,7 +30,7 @@ public class MidiRotation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (mManager!=null && mManager.enabled) {
+		if (mManager!=null && mManager.enabled && mManager.devices>0) {
 			int v = 0;
 			if (mManager.GetKeyVelocity(key, out v)) {
 				transform.localRotation = Quaternion.Euler(
