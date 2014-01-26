@@ -40,6 +40,7 @@ public class Actor : LightReceiver {
 
 	public GameObject fxEnergieLow;
 	public GameObject fxEnergieUp;
+	public GameObject fxEnergieAlert;
 
 	// Use this for initialization
 	public override void Start () {
@@ -237,9 +238,18 @@ public class Actor : LightReceiver {
 			}
 		}
 
+		if ((CooldownCur / CooldownTimer)>=0.8f) {
+			if (!fxEnergieAlert.activeSelf) {
+				fxEnergieLow.SetActive(false);
+				fxEnergieAlert.SetActive(true);
+			}
+		} else if (fxEnergieAlert.activeSelf) {
+			fxEnergieAlert.SetActive(false);
+		}
+
 		if(InBlackArea)
 		{
-			if (fxEnergieLow.activeSelf==false) {
+			if (fxEnergieLow.activeSelf==false && fxEnergieAlert.activeSelf==false) {
 				fxEnergieLow.SetActive(true);
 			}
 			if (fxEnergieUp.activeSelf) {

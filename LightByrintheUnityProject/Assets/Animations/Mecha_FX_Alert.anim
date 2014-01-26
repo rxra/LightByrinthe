@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Mecha_FX_Absorb
+  m_Name: Mecha_FX_Alert
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -17,18 +17,23 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: .00752547383, y: -.0796187595, z: 0}
-        inSlope: {x: 8.94069672e-08, y: .193877548, z: 0}
-        outSlope: {x: 8.94069672e-08, y: .193877548, z: 0}
+        value: {x: -.00583255291, y: .0113852918, z: -.0112304688}
+        inSlope: {x: 0, y: .0502551496, z: 0}
+        outSlope: {x: 0, y: .0502551496, z: 0}
+        tangentMode: 1633116001
+      - time: .5
+        value: {x: -.00583255291, y: .0365128666, z: -.0112304688}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
-      - time: .333333343
-        value: {x: .00752550364, y: -.0149929076, z: 0}
-        inSlope: {x: 8.94069672e-08, y: .193877548, z: 0}
-        outSlope: {x: 8.94069672e-08, y: .193877548, z: 0}
-        tangentMode: 114
+      - time: 1
+        value: {x: -.00583255291, y: .0113852918, z: -.0112304688}
+        inSlope: {x: 0, y: -.0502551496, z: 0}
+        outSlope: {x: 0, y: -.0502551496, z: 0}
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Sprites_Mecha_Exclamation
   m_ScaleCurves: []
   m_FloatCurves:
   - curve:
@@ -39,12 +44,7 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: .166666672
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .333333343
+      - time: 1
         value: 1
         inSlope: 0
         outSlope: 0
@@ -52,7 +52,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.r
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Mecha_HaloRed
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -63,12 +63,7 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: .166666672
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .333333343
+      - time: 1
         value: 1
         inSlope: 0
         outSlope: 0
@@ -76,7 +71,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.g
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Mecha_HaloRed
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -87,12 +82,7 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: .166666672
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .333333343
+      - time: 1
         value: 1
         inSlope: 0
         outSlope: 0
@@ -100,58 +90,43 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.b
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Mecha_HaloRed
     classID: 212
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: 6
-        outSlope: 6
-        tangentMode: 10
-      - time: .166666672
         value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
-      - time: .333333343
-        value: 0
-        inSlope: -6
-        outSlope: -6
-        tangentMode: 10
+        tangentMode: 0
+      - time: .5
+        value: .649999976
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.a
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Mecha_HaloRed
     classID: 212
     script: {fileID: 0}
-  m_PPtrCurves:
-  - curve:
-    - time: 0
-      value: {fileID: 21300026, guid: 12844b979c671504e8935a268ea284d1, type: 3}
-    - time: .0833333358
-      value: {fileID: 21300028, guid: 12844b979c671504e8935a268ea284d1, type: 3}
-    - time: .166666672
-      value: {fileID: 21300030, guid: 12844b979c671504e8935a268ea284d1, type: 3}
-    - time: .25
-      value: {fileID: 21300032, guid: 12844b979c671504e8935a268ea284d1, type: 3}
-    - time: .333333343
-      value: {fileID: 21300042, guid: 12844b979c671504e8935a268ea284d1, type: 3}
-    attribute: m_Sprite
-    path: 
-    classID: 212
-    script: {fileID: 0}
-  m_SampleRate: 12
-  m_WrapMode: 2
+  m_PPtrCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: .416666687
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -170,73 +145,11 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: .00752547383
-        inSlope: 8.94069672e-08
-        outSlope: 8.94069672e-08
-        tangentMode: 10
-      - time: .333333343
-        value: .00752550364
-        inSlope: 8.94069672e-08
-        outSlope: 8.94069672e-08
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_LocalPosition.x
-    path: Sprites_Mecha_Arrow_Up
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: -.0796187595
-        inSlope: .193877548
-        outSlope: .193877548
-        tangentMode: 10
-      - time: .333333343
-        value: -.0149929076
-        inSlope: .193877548
-        outSlope: .193877548
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_LocalPosition.y
-    path: Sprites_Mecha_Arrow_Up
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .333333343
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_LocalPosition.z
-    path: Sprites_Mecha_Arrow_Up
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: .166666672
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .333333343
+      - time: 1
         value: 1
         inSlope: 0
         outSlope: 0
@@ -244,7 +157,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.r
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Mecha_HaloRed
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -255,12 +168,7 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: .166666672
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .333333343
+      - time: 1
         value: 1
         inSlope: 0
         outSlope: 0
@@ -268,7 +176,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.g
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Mecha_HaloRed
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -279,12 +187,7 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: .166666672
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .333333343
+      - time: 1
         value: 1
         inSlope: 0
         outSlope: 0
@@ -292,32 +195,104 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.b
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Mecha_HaloRed
     classID: 212
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: 6
-        outSlope: 6
-        tangentMode: 10
-      - time: .166666672
         value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
-      - time: .333333343
-        value: 0
-        inSlope: -6
-        outSlope: -6
-        tangentMode: 10
+        tangentMode: 0
+      - time: .5
+        value: .649999976
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.a
-    path: Sprites_Mecha_Arrow_Up
+    path: Mecha_Head/FX_Alert/Mecha_HaloRed
     classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -.00583255291
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .5
+        value: -.00583255291
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1
+        value: -.00583255291
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.x
+    path: Mecha_Head/FX_Alert/Sprites_Mecha_Exclamation
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .0113852918
+        inSlope: .0502551496
+        outSlope: .0502551496
+        tangentMode: 10
+      - time: .5
+        value: .0365128666
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1
+        value: .0113852918
+        inSlope: -.0502551496
+        outSlope: -.0502551496
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.y
+    path: Mecha_Head/FX_Alert/Sprites_Mecha_Exclamation
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -.0112304688
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .5
+        value: -.0112304688
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1
+        value: -.0112304688
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.z
+    path: Mecha_Head/FX_Alert/Sprites_Mecha_Exclamation
+    classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_Events: []

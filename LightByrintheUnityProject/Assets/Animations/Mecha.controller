@@ -710,6 +710,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110296292
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Mecha_FX_Alert
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 96cac552da1f5c94bad6b9051b6f9525, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 465, y: 51, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1107 &110700000
 StateMachine:
   serializedVersion: 2
@@ -727,6 +742,7 @@ StateMachine:
   - {fileID: 110210945}
   - {fileID: 110201728}
   - {fileID: 110217090}
+  - {fileID: 110296292}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
