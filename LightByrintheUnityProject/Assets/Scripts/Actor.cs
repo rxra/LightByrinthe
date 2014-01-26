@@ -94,7 +94,22 @@ public class Actor : LightReceiver {
 				   _level.GetCellAt(i,j).GetCellType() == 14 ||
 				   _level.GetCellAt(i,j).GetCellType() == 15 ||
 				   _level.GetCellAt(i,j).GetCellType() == 16 ||
-				   _level.GetCellAt(i,j).GetCellType() > 22)
+				   _level.GetCellAt(i,j).GetCellType() > 20)
+
+				/*if(_level.GetCellAt(i,j).GetCellType() == 4 ||
+					   _level.GetCellAt(i,j).GetCellType() == 10 ||
+					   _level.GetCellAt(i,j).GetCellType() == 16 ||
+					   _level.GetCellAt(i,j).GetCellType() == 5 ||
+					   _level.GetCellAt(i,j).GetCellType() == 6 ||
+					   _level.GetCellAt(i,j).GetCellType() == 7 ||
+					   _level.GetCellAt(i,j).GetCellType() == 8 ||
+					   _level.GetCellAt(i,j).GetCellType() == 9 ||
+					   _level.GetCellAt(i,j).GetCellType() == 12 ||
+					   _level.GetCellAt(i,j).GetCellType() == 13 ||
+					   _level.GetCellAt(i,j).GetCellType() == 14 ||
+					   _level.GetCellAt(i,j).GetCellType() == 15 ||
+					   _level.GetCellAt(i,j).GetCellType() > 20)*/
+
 				{
 					isWall = true;
 				}

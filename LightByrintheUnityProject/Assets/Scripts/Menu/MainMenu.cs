@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour {
 	public float timeBeforeStart = 1;
 	public float step = 1;
 	public GameObject text;
+	public AudioSource mainAudio;
+	public AudioClip mainClip;
 
 	// Use this for initialization
 	void Start ()
@@ -26,6 +28,8 @@ public class MainMenu : MonoBehaviour {
 	void Update()
 	{
 		if(Input.anyKeyDown && text.activeSelf) {
+			mainAudio.clip = mainClip;
+			mainAudio.Play();
 			Application.LoadLevel("Level1");
 		}
 	}
