@@ -7,8 +7,6 @@ public class MainMenu : MonoBehaviour {
 	public float timeBeforeStart = 1;
 	public float step = 1;
 	public GameObject text;
-	public AudioSource mainAudio;
-	public AudioClip mainClip;
 
 	// Use this for initialization
 	void Start ()
@@ -25,13 +23,18 @@ public class MainMenu : MonoBehaviour {
 		go.SetActive(true);
 	}
 
+	IEnumerator WaitAndLoad(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		//mainAudio.clip = mainClip;
+		///mainAudio.Play();
+		Application.LoadLevel("Level1");
+	}
+	
 	void Update()
 	{
 		if(Input.anyKeyDown && text.activeSelf) {
 			text.audio.Play();
-			mainAudio.clip = mainClip;
-			mainAudio.Play();
-			Application.LoadLevel("Level1");
+			StartCoroutine(WaitAndLoad(1));
 		}
 	}
 }

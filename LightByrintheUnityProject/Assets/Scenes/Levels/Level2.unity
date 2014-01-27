@@ -179,7 +179,7 @@ AudioSource:
     type: 2}
   m_PrefabInternal: {fileID: 2097176183}
   m_GameObject: {fileID: 677185154}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 2505d624eb9951449add31f76949d8ab, type: 3}
   m_PlayOnAwake: 1
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TexLevel: {fileID: 4900000, guid: 9c8df7f5c4c06254eb1fc6aa6b5e47ca, type: 3}
+  CookieTex: {fileID: 0}
   tileSize: {x: 64, y: 64}
   screenSizeRef: {x: 1024, y: 768}
   Lights: []
@@ -526,6 +527,10 @@ Prefab:
     - target: {fileID: 11400000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
       propertyPath: LifeActor
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec9f3645f1c786245a6d7f7762d81c5d, type: 2}
