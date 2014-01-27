@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Threading;
 
+
 public class MidiManager : MonoBehaviour {
+
+#if UNITY_STANDALONE_WIN
 
 	// Creating new MIDIInput instance
 	private MIDIInput midiInput = new MIDIInput();
@@ -104,4 +107,7 @@ public class MidiManager : MonoBehaviour {
 	}
 
 	//public bool KeyValue(string str, out 
+
+#endif
 }
+

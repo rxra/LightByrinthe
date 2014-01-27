@@ -27,9 +27,11 @@ public class MidiTranslation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+#if UNITY_STANDALONE_WIN
 		mManager = MidiManager.instance;
-		initPos = transform.position;
 		midiEnabled = mManager!=null && mManager.enabled && mManager.devices>0;
+#endif
+		initPos = transform.position;
 		j360enabled = Input.GetJoystickNames().Length>0&&Input.GetJoystickNames()[0].Contains("360")?true:false;
 	}
 
@@ -38,6 +40,7 @@ public class MidiTranslation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+#if UNITY_STANDALONE_WIN
 		if (midiEnabled) {
 			int v = 0;
 			if (mManager.GetKeyVelocity(key, out v)) {
@@ -46,7 +49,9 @@ public class MidiTranslation : MonoBehaviour {
 			}/* else {
 				//transform.position = initPos;
 			}*/
-		} else if (j360enabled) {
+		} else
+#endif
+		if (j360enabled) {
 			if (Input.GetButton(button.ToString())) {
 				transform.position = initPos - axis * maxTranslation.x * Input.GetAxis("Triggers_1");
 			}
@@ -70,6 +75,8 @@ public class MidiTranslation : MonoBehaviour {
 		}
 	}
 
+#if UNITY_STANDALONE_WIN
 	private MidiManager mManager; 
+#endif
 
 }

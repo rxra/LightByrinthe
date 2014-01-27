@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour {
 	{
 		if(Input.anyKeyDown && text.activeSelf) {
 			text.audio.Play();
-			StartCoroutine(WaitAndLoad(1));
+			StartCoroutine(WaitAndLoad(0.25f));
 		}
 	}
 }

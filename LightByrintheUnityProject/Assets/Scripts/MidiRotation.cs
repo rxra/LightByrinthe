@@ -23,13 +23,16 @@ public class MidiRotation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+#if UNITY_STANDALONE_WIN
 		mManager = MidiManager.instance;
+#endif
 		initialeQ = transform.localRotation;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+#if UNITY_STANDALONE_WIN
 		if (mManager!=null && mManager.enabled && mManager.devices>0) {
 			int v = 0;
 			if (mManager.GetKeyVelocity(key, out v)) {
@@ -40,7 +43,9 @@ public class MidiRotation : MonoBehaviour {
 			} else {
 				transform.localRotation = initialeQ;
 			}
-		} else {
+		} else
+#endif
+		{
 			if (Input.GetButton(button.ToString())) {
 				_currentRotation += Input.GetAxis("Triggers_1")*Time.deltaTime*jspeed;
 				if (_currentRotation>maxRotation) {
@@ -54,6 +59,8 @@ public class MidiRotation : MonoBehaviour {
 		}
 	}
 
+#if UNITY_STANDALONE_WIN
 	private MidiManager mManager; 
+#endif
 	private float _currentRotation = 0;
 }
