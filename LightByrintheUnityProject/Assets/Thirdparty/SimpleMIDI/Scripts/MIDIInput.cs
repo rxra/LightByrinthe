@@ -7,6 +7,8 @@ using System.Threading;
 // Code by Eduardo Calcada
 // Contact me at www.eduardocalcada.com
 
+#if UNITY_STANDALONE_WIN
+
 public class MIDIInput
 {
 	int keyNumber = 0;
@@ -128,3 +130,6 @@ public class MIDIInput
 		}
 	}
 }
+
+#endif
+

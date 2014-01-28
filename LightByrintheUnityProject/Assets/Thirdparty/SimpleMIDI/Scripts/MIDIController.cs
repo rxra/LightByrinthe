@@ -6,8 +6,10 @@ using System.Threading;
 // Code by Eduardo Calcada
 // Contact me at www.eduardocalcada.com
 
+
 public class MIDIController : MonoBehaviour {
 	
+#if UNITY_STANDALONE_WIN
 	// Creating new MIDIInput instance
 	public MIDIInput midiInput = new MIDIInput();
 	
@@ -66,4 +68,6 @@ public class MIDIController : MonoBehaviour {
 		midiInput.done = true;
 		midiInput.Terminate();
 	}
+#endif
 }
+
