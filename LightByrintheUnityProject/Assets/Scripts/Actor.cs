@@ -147,19 +147,19 @@ public class Actor : LightReceiver {
 		_lerp = true;
 		
 		Vector3 delta = NextCell - CurCell;
-		Debug.Log ("delta: " + delta);
+		//Debug.Log ("delta: " + delta);
 		int walk = 0;
 		if (delta.y<0) {
-			Debug.Log ("down");
+			//Debug.Log ("down");
 			walk = 3;
 		} else if (delta.x==0) {
-			Debug.Log ("up");
+			//Debug.Log ("up");
 			walk = 4;
 		} else if (delta.x<0) {
-			Debug.Log ("left");
+			//Debug.Log ("left");
 			walk = 1;
 		} else {
-			Debug.Log ("right");
+			//Debug.Log ("right");
 			walk = 2;
 		}
 		anim.SetInteger("walk", walk);
@@ -197,19 +197,19 @@ public class Actor : LightReceiver {
 		_lerp = true;
 
 		Vector3 delta = NextCell - CurCell;
-		Debug.Log ("delta: " + delta);
+		//Debug.Log ("delta: " + delta);
 		int walk = 0;
 		if (delta.y<0) {
-			Debug.Log ("down");
+			//Debug.Log ("down");
 			walk = 3;
 		} else if (delta.x==0) {
-			Debug.Log ("up");
+			//Debug.Log ("up");
 			walk = 4;
 		} else if (delta.x<0) {
-			Debug.Log ("left");
+			//Debug.Log ("left");
 			walk = 1;
 		} else {
-			Debug.Log ("right");
+			//Debug.Log ("right");
 			walk = 2;
 		}
 		anim.SetInteger("walk", walk);
@@ -311,19 +311,19 @@ public class Actor : LightReceiver {
 				_level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).OnActorEnter(this);
 
 				Vector3 delta = NextCell - CurCell;
-				Debug.Log ("delta: " + delta);
+				//Debug.Log ("delta: " + delta);
 				int walk = 0;
 				if (delta.y<0) {
-					Debug.Log ("down");
+					//Debug.Log ("down");
 					walk = 3;
 				} else if (delta.x==0) {
-					Debug.Log ("up");
+					//Debug.Log ("up");
 					walk = 4;
 				} else if (delta.x<0) {
-					Debug.Log ("left");
+					//Debug.Log ("left");
 					walk = 1;
 				} else {
-					Debug.Log ("right");
+					//Debug.Log ("right");
 					walk = 2;
 				}
 				anim.SetInteger("walk", walk);	

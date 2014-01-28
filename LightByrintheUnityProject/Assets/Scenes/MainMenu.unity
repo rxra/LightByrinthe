@@ -4306,8 +4306,6 @@ MonoBehaviour:
   timeBeforeStart: .25
   step: 1
   text: {fileID: 32474168}
-  mainAudio: {fileID: 325569655}
-  mainClip: {fileID: 8300000, guid: 2505d624eb9951449add31f76949d8ab, type: 3}
 --- !u!1 &1577789627
 GameObject:
   m_ObjectHideFlags: 0
@@ -4667,9 +4665,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1311495986}
+  - {fileID: 1769839283}
   - {fileID: 422235938}
   - {fileID: 78376143}
-  - {fileID: 1769839283}
   - {fileID: 1617123719}
   - {fileID: 806326344}
   - {fileID: 1329267207}
