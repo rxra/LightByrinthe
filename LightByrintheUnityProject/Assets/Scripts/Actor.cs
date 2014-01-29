@@ -31,13 +31,14 @@ public class Actor : LightReceiver {
 	private bool _ReachExit;
 	private bool _isDead;
 
-	private LifeBar _lifeBar;
 
 	private Animator anim;							// a reference to the animator on the character
 
 	public AudioClip walkSound;
 	public AudioClip dieSound;
 
+	public LifeBar lifeBar;
+	public GameObject lifeBarBack;
 	public GameObject fxEnergieLow;
 	public GameObject fxEnergieUp;
 	public GameObject fxEnergieAlert;
@@ -59,8 +60,6 @@ public class Actor : LightReceiver {
 		Speed = 0.4f;
 		CooldownCur = 0;
 		//CooldownTimer = 10.0f;
-
-		_lifeBar = GetComponentInChildren<LifeBar>();
 
 		_isDead = false;
 		anim.SetBool("die", false);				
@@ -147,19 +146,19 @@ public class Actor : LightReceiver {
 		_lerp = true;
 		
 		Vector3 delta = NextCell - CurCell;
-		Debug.Log ("delta: " + delta);
+		//Debug.Log ("delta: " + delta);
 		int walk = 0;
 		if (delta.y<0) {
-			Debug.Log ("down");
+			//Debug.Log ("down");
 			walk = 3;
 		} else if (delta.x==0) {
-			Debug.Log ("up");
+			//Debug.Log ("up");
 			walk = 4;
 		} else if (delta.x<0) {
-			Debug.Log ("left");
+			//Debug.Log ("left");
 			walk = 1;
 		} else {
-			Debug.Log ("right");
+			//Debug.Log ("right");
 			walk = 2;
 		}
 		anim.SetInteger("walk", walk);
@@ -197,19 +196,19 @@ public class Actor : LightReceiver {
 		_lerp = true;
 
 		Vector3 delta = NextCell - CurCell;
-		Debug.Log ("delta: " + delta);
+		//Debug.Log ("delta: " + delta);
 		int walk = 0;
 		if (delta.y<0) {
-			Debug.Log ("down");
+			//Debug.Log ("down");
 			walk = 3;
 		} else if (delta.x==0) {
-			Debug.Log ("up");
+			//Debug.Log ("up");
 			walk = 4;
 		} else if (delta.x<0) {
-			Debug.Log ("left");
+			//Debug.Log ("left");
 			walk = 1;
 		} else {
-			Debug.Log ("right");
+			//Debug.Log ("right");
 			walk = 2;
 		}
 		anim.SetInteger("walk", walk);
@@ -228,7 +227,11 @@ public class Actor : LightReceiver {
 		}
 
 		if (Finished()) {
-			_lifeBar.SetValue(1);
+			lifeBar.gameObject.SetActive(false);
+			lifeBarBack.SetActive(false);
+			fxEnergieUp.SetActive(false);
+			fxEnergieLow.SetActive(false);
+			fxEnergieAlert.SetActive(false);
 			return;
 		}
 
@@ -258,9 +261,9 @@ public class Actor : LightReceiver {
 
 			CooldownCur += Time.deltaTime;
 
-			_lifeBar.SetValue(1.0f-CooldownCur / CooldownTimer);
-			if (_lifeBar.audio.isPlaying) {
-				_lifeBar.audio.Stop();
+			lifeBar.SetValue(1.0f-CooldownCur / CooldownTimer);
+			if (lifeBar.audio.isPlaying) {
+				lifeBar.audio.Stop();
 			}
 			if(CooldownCur >= CooldownTimer)
 			{
@@ -274,9 +277,9 @@ public class Actor : LightReceiver {
 				CooldownCur = 0;
 			}
 						
-			_lifeBar.SetValue(1.0f-CooldownCur / CooldownTimer);
-			if (!_lifeBar.audio.isPlaying) {
-				_lifeBar.audio.Play();
+			lifeBar.SetValue(1.0f-CooldownCur / CooldownTimer);
+			if (!lifeBar.audio.isPlaying) {
+				lifeBar.audio.Play();
 			}
 
 			if (fxEnergieLow.activeSelf) {
@@ -311,19 +314,19 @@ public class Actor : LightReceiver {
 				_level.GetCellAt((int)Path[CurPathIdx].x,(int)Path[CurPathIdx].y).OnActorEnter(this);
 
 				Vector3 delta = NextCell - CurCell;
-				Debug.Log ("delta: " + delta);
+				//Debug.Log ("delta: " + delta);
 				int walk = 0;
 				if (delta.y<0) {
-					Debug.Log ("down");
+					//Debug.Log ("down");
 					walk = 3;
 				} else if (delta.x==0) {
-					Debug.Log ("up");
+					//Debug.Log ("up");
 					walk = 4;
 				} else if (delta.x<0) {
-					Debug.Log ("left");
+					//Debug.Log ("left");
 					walk = 1;
 				} else {
-					Debug.Log ("right");
+					//Debug.Log ("right");
 					walk = 2;
 				}
 				anim.SetInteger("walk", walk);	
@@ -367,9 +370,6 @@ public class Actor : LightReceiver {
 	public void OnExit()
 	{
 		_ReachExit = true;
-		_lifeBar.SetValue(1);
-		fxEnergieUp.SetActive(false);
-		fxEnergieLow.SetActive(false);
 	}
 
 	public bool Dead()

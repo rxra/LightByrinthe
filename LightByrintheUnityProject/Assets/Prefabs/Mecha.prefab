@@ -741,6 +741,8 @@ MonoBehaviour:
   CooldownTimer: 0
   walkSound: {fileID: 8300000, guid: 56a86eb14ddf7d94886018304f3b3d82, type: 3}
   dieSound: {fileID: 8300000, guid: e1b83ff3c47eccd4b8b8a0a4abddc660, type: 3}
+  lifeBar: {fileID: 11400002}
+  lifeBarBack: {fileID: 100016}
   fxEnergieLow: {fileID: 100020}
   fxEnergieUp: {fileID: 100018}
   fxEnergieAlert: {fileID: 100022}

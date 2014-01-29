@@ -148,8 +148,11 @@ public class Level : MonoBehaviour {
 			{
 				MidiTranslation mr = goLight.AddComponent<MidiTranslation>() as MidiTranslation;
 				mr.key = 9 + lightCount;
+#if UNITY_STANDALONE_OSX
+				mr.button = MidiTranslation.JButton.A_1_OSX + lightCount;
+				#else
 				mr.button = MidiTranslation.JButton.A_1 + lightCount;
-
+#endif
 				mr.axis = (int.Parse(v[4]) == 1) ? Vector3.up : Vector3.right;
 				Vector2 limits = new Vector2(int.Parse(v[11]),int.Parse(v[12]));
 

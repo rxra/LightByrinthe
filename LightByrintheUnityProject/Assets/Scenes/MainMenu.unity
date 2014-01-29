@@ -635,6 +635,8 @@ MonoBehaviour:
   CooldownTimer: 0
   walkSound: {fileID: 8300000, guid: 56a86eb14ddf7d94886018304f3b3d82, type: 3}
   dieSound: {fileID: 8300000, guid: e1b83ff3c47eccd4b8b8a0a4abddc660, type: 3}
+  lifeBar: {fileID: 1926964882}
+  lifeBarBack: {fileID: 1931004543}
   fxEnergieLow: {fileID: 110779279}
   fxEnergieUp: {fileID: 262572850}
   fxEnergieAlert: {fileID: 1302926943}
@@ -1597,6 +1599,8 @@ MonoBehaviour:
   CooldownTimer: 0
   walkSound: {fileID: 8300000, guid: 56a86eb14ddf7d94886018304f3b3d82, type: 3}
   dieSound: {fileID: 8300000, guid: e1b83ff3c47eccd4b8b8a0a4abddc660, type: 3}
+  lifeBar: {fileID: 57006545}
+  lifeBarBack: {fileID: 2092780875}
   fxEnergieLow: {fileID: 565332561}
   fxEnergieUp: {fileID: 47737813}
   fxEnergieAlert: {fileID: 1534979122}
@@ -3732,6 +3736,8 @@ MonoBehaviour:
   CooldownTimer: 0
   walkSound: {fileID: 8300000, guid: 56a86eb14ddf7d94886018304f3b3d82, type: 3}
   dieSound: {fileID: 8300000, guid: e1b83ff3c47eccd4b8b8a0a4abddc660, type: 3}
+  lifeBar: {fileID: 2026233143}
+  lifeBarBack: {fileID: 1653852715}
   fxEnergieLow: {fileID: 1515402794}
   fxEnergieUp: {fileID: 395283223}
   fxEnergieAlert: {fileID: 696801251}
@@ -4306,8 +4312,6 @@ MonoBehaviour:
   timeBeforeStart: .25
   step: 1
   text: {fileID: 32474168}
-  mainAudio: {fileID: 325569655}
-  mainClip: {fileID: 8300000, guid: 2505d624eb9951449add31f76949d8ab, type: 3}
 --- !u!1 &1577789627
 GameObject:
   m_ObjectHideFlags: 0
@@ -4666,10 +4670,10 @@ Transform:
   m_LocalPosition: {x: .150000006, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1311495986}
-  - {fileID: 1769839283}
-  - {fileID: 422235938}
   - {fileID: 78376143}
+  - {fileID: 1311495986}
+  - {fileID: 422235938}
+  - {fileID: 1769839283}
   - {fileID: 1617123719}
   - {fileID: 806326344}
   - {fileID: 1329267207}
@@ -4890,6 +4894,8 @@ MonoBehaviour:
   CooldownTimer: 0
   walkSound: {fileID: 8300000, guid: 56a86eb14ddf7d94886018304f3b3d82, type: 3}
   dieSound: {fileID: 8300000, guid: e1b83ff3c47eccd4b8b8a0a4abddc660, type: 3}
+  lifeBar: {fileID: 212936744}
+  lifeBarBack: {fileID: 1626674009}
   fxEnergieLow: {fileID: 1959924775}
   fxEnergieUp: {fileID: 1022733887}
   fxEnergieAlert: {fileID: 1005037169}

@@ -11,6 +11,9 @@ public class MainMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
+#if UNITY_STANDALONE_OSX
+		text.GetComponent<GUIText>().text = "Press both triggers (Left/Right)";
+#endif
 		foreach(GameObject go in mechas) {
 			go.SetActive(false);
 			StartCoroutine(WaitAndStart(timeBeforeStart,go));
@@ -32,7 +35,11 @@ public class MainMenu : MonoBehaviour {
 	
 	void Update()
 	{
+#if UNITY_STANDALONE_OSX
+		if(Input.GetAxis("LTriggers_1_OSX")!=0 && Input.GetAxis("RTriggers_1_OSX")!=0 && text.activeSelf) {
+#else
 		if(Input.anyKeyDown && text.activeSelf) {
+#endif
 			text.audio.Play();
 			StartCoroutine(WaitAndLoad(0.25f));
 		}

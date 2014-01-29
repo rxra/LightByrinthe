@@ -5,14 +5,25 @@ public class MidiTranslation : MonoBehaviour {
 
 	public enum JButton
 	{
+#if UNITY_STANDALONE_OSX
+		A_1_OSX,
+		B_1_OSX,
+		X_1_OSX,
+		Y_1_OSX
+#else
 		A_1,
 		B_1,
 		X_1,
 		Y_1
+#endif
 	}
 	
 	public int key = -1;
+#if UNITY_STANDALONE_OSX
+	public JButton button = JButton.A_1_OSX;
+#else
 	public JButton button = JButton.A_1;
+#endif
 	public float jspeed = 25;
 	public float kspeed = 5;
 	//public float maxTranslation = 2f;
@@ -30,9 +41,11 @@ public class MidiTranslation : MonoBehaviour {
 #if UNITY_STANDALONE_WIN
 		mManager = MidiManager.instance;
 		midiEnabled = mManager!=null && mManager.enabled && mManager.devices>0;
+		j360enabled = Input.GetJoystickNames().Length>0&&Input.GetJoystickNames()[0].Contains("360")?true:false;
+#elif UNITY_STANDALONE_OSX
+		j360enabled = Input.GetJoystickNames().Length>0?true:false;
 #endif
 		initPos = transform.position;
-		j360enabled = Input.GetJoystickNames().Length>0&&Input.GetJoystickNames()[0].Contains("360")?true:false;
 	}
 
 	private Vector3 backPos;
@@ -53,7 +66,11 @@ public class MidiTranslation : MonoBehaviour {
 #endif
 		if (j360enabled) {
 			if (Input.GetButton(button.ToString())) {
+#if UNITY_STANDALONE_OSX
+				transform.position = initPos - axis * maxTranslation.x * (Input.GetAxis("LTriggers_1_OSX")-Input.GetAxis("RTriggers_1_OSX"));
+#else
 				transform.position = initPos - axis * maxTranslation.x * Input.GetAxis("Triggers_1");
+#endif
 			}
 			else
 			{
