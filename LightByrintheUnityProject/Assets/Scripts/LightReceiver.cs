@@ -3,8 +3,11 @@ using System.Collections;
 
 public class LightReceiver : MonoBehaviour {
 
-	protected bool _lightEntered;
+	protected bool 	_lightEntered;
+	protected bool 	_lightComputation = true;
+
 	protected Level _level;
+
 	// Use this for initialization
 	public virtual void Start () {
 		_level = Level.instance;
@@ -18,20 +21,23 @@ public class LightReceiver : MonoBehaviour {
 			return;
 		}
 
-		if(IsInLight())
+		if(_lightComputation)
 		{
-			if(!_lightEntered)
+			if(IsInLight())
 			{
-				OnLightEnter();
-				_lightEntered = true;
+				if(!_lightEntered)
+				{
+					OnLightEnter();
+					_lightEntered = true;
+				}
 			}
-		}
-		else
-		{
-			if(_lightEntered)
+			else
 			{
-				OnLightExit();
-				_lightEntered = false;
+				if(_lightEntered)
+				{
+					OnLightExit();
+					_lightEntered = false;
+				}
 			}
 		}
 	}

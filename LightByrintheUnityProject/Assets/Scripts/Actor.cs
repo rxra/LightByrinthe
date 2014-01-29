@@ -86,40 +86,8 @@ public class Actor : LightReceiver {
 		{
 			for (int j = 0; j < _level.height; ++j)
 			{
-				//Debug.Log(i + "  " + j);
-				if(_level.GetCellAt(i,j).GetCellType() == 9 ||
-				   _level.GetCellAt(i,j).GetCellType() == 10 ||
-				   _level.GetCellAt(i,j).GetCellType() == 5 ||
-				   _level.GetCellAt(i,j).GetCellType() == 6 ||
-				   _level.GetCellAt(i,j).GetCellType() == 7 ||
-				   _level.GetCellAt(i,j).GetCellType() == 8 ||
-				   _level.GetCellAt(i,j).GetCellType() == 13 ||
-				   _level.GetCellAt(i,j).GetCellType() == 14 ||
-				   _level.GetCellAt(i,j).GetCellType() == 15 ||
-				   _level.GetCellAt(i,j).GetCellType() == 16 ||
-				   _level.GetCellAt(i,j).GetCellType() > 20)
+				isWall = _level.GetCellAt(i,j).IsWall();
 
-				/*if(_level.GetCellAt(i,j).GetCellType() == 4 ||
-					   _level.GetCellAt(i,j).GetCellType() == 10 ||
-					   _level.GetCellAt(i,j).GetCellType() == 16 ||
-					   _level.GetCellAt(i,j).GetCellType() == 5 ||
-					   _level.GetCellAt(i,j).GetCellType() == 6 ||
-					   _level.GetCellAt(i,j).GetCellType() == 7 ||
-					   _level.GetCellAt(i,j).GetCellType() == 8 ||
-					   _level.GetCellAt(i,j).GetCellType() == 9 ||
-					   _level.GetCellAt(i,j).GetCellType() == 12 ||
-					   _level.GetCellAt(i,j).GetCellType() == 13 ||
-					   _level.GetCellAt(i,j).GetCellType() == 14 ||
-					   _level.GetCellAt(i,j).GetCellType() == 15 ||
-					   _level.GetCellAt(i,j).GetCellType() > 20)*/
-
-				{
-					isWall = true;
-				}
-				else {
-					isWall = false;
-				}
-				//Debug.Log(isWall);
 				_mapNoded[i, j] = new SettlersEngine.MyPathNode()
 				{
 					

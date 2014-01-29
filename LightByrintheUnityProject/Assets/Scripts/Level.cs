@@ -229,13 +229,14 @@ public class Level : MonoBehaviour {
 		}
 		else
 		{
-			bool dead = true;
-			bool finished = true;
+			bool dead 		= true;
+			bool finished 	= true;
+
 			for(int i = 0; i < Actors.Count; ++i)
 			{
-				if(!Actors[i].Finished())
+				if(!Actors[i].Dead())
 				{
-					if(!Actors[i].Dead())
+					if(!Actors[i].Finished())
 						finished = false;
 				}
 
@@ -245,10 +246,6 @@ public class Level : MonoBehaviour {
 				}
 			}
 
-			if(finished) {
-				Finish();
-			}
-
 			if(dead)
 			{
 				deadTimer += Time.deltaTime;
@@ -256,6 +253,14 @@ public class Level : MonoBehaviour {
 				{
 					GameManager.instance.Reset();
 					deadTimer = 0;
+				}
+			}
+			else
+			{
+				if(finished)
+				{
+					Debug.Log ("Finished");
+					Finish();
 				}
 			}
 		}

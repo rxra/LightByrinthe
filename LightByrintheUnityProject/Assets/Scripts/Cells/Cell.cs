@@ -7,6 +7,12 @@ public class Cell : LightReceiver {
 	private Sprite _Sprite;
 	private Vector2 pos = Vector2.zero;
 
+	public override void Start ()
+	{
+		_lightComputation = false;
+		base.Start();
+	}
+
 	public int x
 	{
 		get
@@ -45,6 +51,21 @@ public class Cell : LightReceiver {
 	public Transform GetTransform()
 	{
 		return gameObject.transform;
+	}
+
+	public bool IsWall()
+	{
+		return ( _Type == 5  ||
+		         _Type == 6  ||
+		         _Type == 7  ||
+		         _Type == 8  ||
+		         _Type == 9  ||
+		         _Type == 10 ||
+		         _Type == 13 ||
+		         _Type == 14 ||
+		         _Type == 15 ||
+		         _Type == 16 ||
+		         _Type >= 20 );
 	}
 
 	public virtual void OnActorEnter(Actor a)
