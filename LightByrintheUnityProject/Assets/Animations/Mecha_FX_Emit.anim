@@ -17,14 +17,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: .00693893433, y: .180066973, z: 0}
-        inSlope: {x: 0, y: -.0822808519, z: 0}
-        outSlope: {x: 0, y: -.0822808519, z: 0}
-        tangentMode: 1104674816
+        value: {x: .00694274902, y: 19.3015327, z: 0}
+        inSlope: {x: 0, y: -11.2847605, z: 0}
+        outSlope: {x: 0, y: -11.2847605, z: 0}
+        tangentMode: 0
       - time: .75
-        value: {x: .00693893433, y: .118356332, z: 0}
-        inSlope: {x: 0, y: -.0822808519, z: 0}
-        outSlope: {x: 0, y: -.0822808519, z: 0}
+        value: {x: .00694274902, y: 10.8379622, z: 0}
+        inSlope: {x: 0, y: -11.2847605, z: 0}
+        outSlope: {x: 0, y: -11.2847605, z: 0}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -108,23 +108,124 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 2.4000001
-        outSlope: 2.4000001
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       - time: .416666657
         value: 1
-        inSlope: -.299999952
-        outSlope: -.299999952
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       - time: .75
         value: 0
-        inSlope: -3
-        outSlope: -3
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.a
     path: Sprites_Mecha_Arrow_Down
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .75
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.r
+    path: FX_OrangeHalo
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .75
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.g
+    path: FX_OrangeHalo
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .75
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.b
+    path: FX_OrangeHalo
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: -2.39999986
+        outSlope: -2.39999986
+        tangentMode: 10
+      - time: .166666672
+        value: .600000024
+        inSlope: 1.20000017
+        outSlope: 1.20000017
+        tangentMode: 10
+      - time: .25
+        value: 1
+        inSlope: 1.20000029
+        outSlope: 1.20000029
+        tangentMode: 10
+      - time: .333333343
+        value: .800000012
+        inSlope: -.599999785
+        outSlope: -.599999785
+        tangentMode: 10
+      - time: .5
+        value: 1
+        inSlope: -2.40000057
+        outSlope: -2.40000057
+        tangentMode: 10
+      - time: .583333313
+        value: .5
+        inSlope: -1.50000083
+        outSlope: -1.50000083
+        tangentMode: 10
+      - time: .75
+        value: 1
+        inSlope: 2.99999976
+        outSlope: 2.99999976
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.a
+    path: FX_OrangeHalo
     classID: 212
     script: {fileID: 0}
   m_PPtrCurves:
@@ -178,12 +279,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: .00693893433
+        value: .00694274902
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: .75
-        value: .00693893433
+        value: .00694274902
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -197,14 +298,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: .180066973
-        inSlope: -.0822808519
-        outSlope: -.0822808519
+        value: 19.3015327
+        inSlope: -11.2847605
+        outSlope: -11.2847605
         tangentMode: 10
       - time: .75
-        value: .118356332
-        inSlope: -.0822808519
-        outSlope: -.0822808519
+        value: 10.8379622
+        inSlope: -11.2847605
+        outSlope: -11.2847605
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -308,23 +409,124 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 2.4000001
-        outSlope: 2.4000001
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       - time: .416666657
         value: 1
-        inSlope: -.299999952
-        outSlope: -.299999952
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       - time: .75
         value: 0
-        inSlope: -3
-        outSlope: -3
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.a
     path: Sprites_Mecha_Arrow_Down
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .75
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.r
+    path: FX_OrangeHalo
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .75
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.g
+    path: FX_OrangeHalo
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .75
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.b
+    path: FX_OrangeHalo
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: -2.39999986
+        outSlope: -2.39999986
+        tangentMode: 10
+      - time: .166666672
+        value: .600000024
+        inSlope: 1.20000017
+        outSlope: 1.20000017
+        tangentMode: 10
+      - time: .25
+        value: 1
+        inSlope: 1.20000029
+        outSlope: 1.20000029
+        tangentMode: 10
+      - time: .333333343
+        value: .800000012
+        inSlope: -.599999785
+        outSlope: -.599999785
+        tangentMode: 10
+      - time: .5
+        value: 1
+        inSlope: -2.40000057
+        outSlope: -2.40000057
+        tangentMode: 10
+      - time: .583333313
+        value: .5
+        inSlope: -1.50000083
+        outSlope: -1.50000083
+        tangentMode: 10
+      - time: .75
+        value: 1
+        inSlope: 2.99999976
+        outSlope: 2.99999976
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.a
+    path: FX_OrangeHalo
     classID: 212
     script: {fileID: 0}
   m_EulerEditorCurves: []

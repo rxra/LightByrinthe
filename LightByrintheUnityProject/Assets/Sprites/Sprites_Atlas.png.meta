@@ -35,7 +35,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -291,6 +291,15 @@ TextureImporter:
         y: 214
         width: 57
         height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Sprites_Mecha_HaloOrange
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 169
+        width: 57
+        height: 42
       alignment: 0
       pivot: {x: .5, y: .5}
   spritePackingTag: 
