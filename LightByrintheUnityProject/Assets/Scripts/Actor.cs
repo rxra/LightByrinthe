@@ -43,10 +43,16 @@ public class Actor : LightReceiver {
 	public GameObject fxEnergieUp;
 	public GameObject fxEnergieAlert;
 
+	private bool gotoEnabled = false;
+
 	// Use this for initialization
 	public override void Start () {
 
 		base.Start();
+
+		// initialising reference variables
+		anim = GetComponentInChildren<Animator>();					  
+		Speed = 25f;
 
 		if (_level==null)
 			return;
@@ -54,10 +60,6 @@ public class Actor : LightReceiver {
 		startTime = Time.time;
 		started = false;
 
-		// initialising reference variables
-		anim = GetComponentInChildren<Animator>();					  
-
-		Speed = 0.4f;
 		CooldownCur = 0;
 		//CooldownTimer = 10.0f;
 
@@ -191,6 +193,20 @@ public class Actor : LightReceiver {
 		base.Update();
 
 		if (_level==null) {
+			if (gotoEnabled) {
+				if(transform.position.Equals(NextCell)==false) {
+					if(_lerp) {
+						
+						float _length = Vector3.Distance(NextCell, CurCell);
+						
+						float distCovered = (Time.time - _startTime) * Speed;
+						float fracJourney = distCovered / _length;
+						transform.position = Vector3.Lerp(CurCell,NextCell,fracJourney);
+					}
+				} else {
+					GameObject.Destroy(gameObject);
+				}
+			}
 			return;
 		}
 
@@ -313,6 +329,35 @@ public class Actor : LightReceiver {
 		return aStar.Search(start, end, null, true);	
 	}
 
+	public void WalkLeft()
+	{
+		anim.SetInteger("walk", 1);
+	}
+
+	public void WalkRight()
+	{
+		anim.SetInteger("walk", 2);
+	}
+	
+	public void WalkUp()
+	{
+		anim.SetInteger("walk", 4);
+	}
+	
+	public void WalkDown()
+	{
+		anim.SetInteger("walk", 3);
+	}
+
+	public void GoTo(Vector3 pos)
+	{
+		gotoEnabled = true;
+		_startTime = Time.time;
+		_lerp = true;
+		CurCell = transform.position;
+		NextCell = pos;
+	}
+
 	protected override void OnLightEnter()
 	{
 		//renderer.material.color = Color.red;
@@ -333,6 +378,8 @@ public class Actor : LightReceiver {
 		audio.loop = false;
 		audio.volume = 1f;
 		audio.Play();
+		lifeBar.gameObject.SetActive(false);
+		lifeBarBack.SetActive(false);
 	}
 
 	public void OnExit()

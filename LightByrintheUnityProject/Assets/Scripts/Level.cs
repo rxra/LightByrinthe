@@ -21,8 +21,8 @@ public class Level : MonoBehaviour {
 	public int width;
 	public int height;
 
-	public float pixelToWorldRatio = 0;
-	public Vector2 scaleToReference;
+	//public float pixelToWorldRatio = 0;
+	//public Vector2 scaleToReference;
 
 	public static Level instance = null;
 
@@ -57,11 +57,11 @@ public class Level : MonoBehaviour {
 	{
 		lastSpawnTime = Time.time;
 
-		pixelToWorldRatio = 2*Camera.main.orthographicSize/Screen.height;
-		scaleToReference = new Vector2(
+		//pixelToWorldRatio = 2*Camera.main.orthographicSize/Screen.height;
+		/*scaleToReference = new Vector2(
 			(float)Screen.width/screenSizeRef.x,
 			(float)Screen.height/screenSizeRef.y
-			);
+			);*/
 
 		string[] lines = TexLevel.text.Split('\n');
 		string[] size = lines[0].Split(',');
@@ -76,25 +76,14 @@ public class Level : MonoBehaviour {
 			{
 				int type = int.Parse(v[i]);
 
-				GameObject go = (GameObject)GameObject.Instantiate(GetTile (type));//(GameObject)GameObject.Instantiate(Tile_1);//GameObject.CreatePrimitive(PrimitiveType.Quad);
-
-				/*go.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(
-					i*tileSize.x+tileSize.x/2-screenSizeRef.x/2,
-					screenSizeRef.y/2-j*tileSize.y+tileSize.y/2,
-				 	0
-				));*/
+				GameObject go = (GameObject)GameObject.Instantiate(GetTile (type));
 
 				go.transform.position = new Vector3(
-					(i*tileSize.x+tileSize.x/2-screenSizeRef.x/2)*pixelToWorldRatio*scaleToReference.x,
-					((screenSizeRef.y/2-j*tileSize.y+tileSize.y/2)*pixelToWorldRatio*scaleToReference.x),
+					i*tileSize.x+tileSize.x/2-screenSizeRef.x/2,
+					screenSizeRef.y/2-j*tileSize.y+tileSize.y/2,
 					0);
 
 				go.transform.parent = this.transform;
-				go.transform.localScale = new Vector3(
-					tileSize.x*pixelToWorldRatio*scaleToReference.x,
-					tileSize.y*pixelToWorldRatio*scaleToReference.y,
-					1
-				);
 
 				Cell c;
 
@@ -160,7 +149,7 @@ public class Level : MonoBehaviour {
 				lightCount++;
 			}
 
-			Vector3 pos = new Vector3(int.Parse(v[0]), int.Parse(v[1]), -0.4f);
+			Vector3 pos = new Vector3(int.Parse(v[0]), int.Parse(v[1]),0);
 
 			float ox = 0.0f; 
 			float oy = 0.0f;
@@ -171,9 +160,9 @@ public class Level : MonoBehaviour {
 			Vector3 offset = new Vector3(ox, oy, 0.0f); 
 
 			//Debug.Log (mr.axis);
-			int angle = int.Parse(v[5]);
-			int intensity = int.Parse(v[6]);
-			int range = int.Parse(v[7]);
+			float angle = float.Parse(v[5]);
+			float intensity = float.Parse(v[6]);
+			float range = float.Parse(v[7]);
 
 			Color color = new Color(int.Parse(v[8]),int.Parse(v[9]),int.Parse(v[10]));
                                           
@@ -184,7 +173,7 @@ public class Level : MonoBehaviour {
 			goLight.light.type 	= LightType.Spot;
 
 			goLight.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-			goLight.transform.position = c.GetTransform().position + new Vector3(offset.x, offset.y, -1f);
+			goLight.transform.position = c.GetTransform().position + new Vector3(offset.x, offset.y, -50f);
 			goLight.transform.parent = c.GetTransform().transform;
 			goLight.light.spotAngle = angle;
 			goLight.light.intensity = intensity;

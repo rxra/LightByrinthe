@@ -1,14 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Menu\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Menu\MainMenu.cs" Line="14" Column="15" />
-      <File FileName="Assets\Scripts\Actor.cs" Line="274" Column="21" />
-      <File FileName="Assets\Scripts\MidiTranslation.cs" Line="42" Column="35" />
-      <File FileName="Assets\Scripts\Level.cs" Line="138" Column="84" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="C:\Users\nicolas\Documents\GitHub\LightByrinthe\LightByrintheUnityProject\Assets\Scripts\MidiRotation.cs" line="45" />
