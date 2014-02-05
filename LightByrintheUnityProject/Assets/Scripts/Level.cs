@@ -216,39 +216,37 @@ public class Level : MonoBehaviour {
 				lastSpawnTime = Time.time;
 			}
 		}
-		else
+		else if (Actors.Count==NbActors)
 		{
-			bool dead 		= true;
-			bool finished 	= true;
+			int dead 		= 0;
+			int finished 	= 0;
 
 			for(int i = 0; i < Actors.Count; ++i)
 			{
 				if(!Actors[i].Dead())
 				{
-					if(!Actors[i].Finished())
-						finished = false;
-				}
-
-				if(!Actors[i].Dead())
+					if(Actors[i].Finished())
+						finished++;
+				} else 
 				{
-					dead = false;
+					dead++;
 				}
 			}
 
-			if(dead)
-			{
-				deadTimer += Time.deltaTime;
-				if(deadTimer >= deadDuration)
+			if ((dead+finished)==NbActors) {
+				if(dead>0)
 				{
-					GameManager.instance.Reset();
-					deadTimer = 0;
+					deadTimer += Time.deltaTime;
+					if(deadTimer >= deadDuration)
+					{
+						deadTimer = 0;
+						GameManager.instance.Reset();
+					}
+					return;
 				}
-			}
-			else
-			{
-				if(finished)
+
+				if(finished==NbActors)
 				{
-					Debug.Log ("Finished");
 					Finish();
 				}
 			}
@@ -261,8 +259,8 @@ public class Level : MonoBehaviour {
 		if(finishTimer >= finishDuration)
 		{
 			// Reach Next Level
-			GameManager.instance.GoToNextLevel();
 			finishTimer = 0;
+			GameManager.instance.GoToNextLevel();
 		}
 	}
 
