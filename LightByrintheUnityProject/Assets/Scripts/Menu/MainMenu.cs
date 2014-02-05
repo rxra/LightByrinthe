@@ -65,7 +65,7 @@ public class MainMenu : MonoBehaviour {
 	IEnumerator WaitAndLoad(float waitTime) {
 		yield return new WaitForSeconds(waitTime);
 		//mainAudio.clip = mainClip;
-		///mainAudio.Play();
+		GameManager.instance.audio.Stop();
 		Application.LoadLevel("Level1");
 	}
 	
@@ -81,12 +81,12 @@ public class MainMenu : MonoBehaviour {
 			StartCoroutine(WaitAndLoad(0.25f));
 		}
 
-			if (actorsStarted==false && objectsVisible==objectsToActivate.Length) {
-				actorsStarted = true;
-				foreach(Actor a in actors) {
-					StartCoroutine(WaitAndWalk(timeToWalk,a));
-					timeToWalk += step;
-				}
+		if (actorsStarted==false && objectsVisible==objectsToActivate.Length) {
+			actorsStarted = true;
+			foreach(Actor a in actors) {
+				StartCoroutine(WaitAndWalk(timeToWalk,a));
+				timeToWalk += step;
+			}
 		}
 	}
 }

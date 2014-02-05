@@ -185,6 +185,12 @@ public class Level : MonoBehaviour {
 		}
 	}
 
+	public void Pause(bool pause) {
+		foreach(Actor a in Actors) {
+			a.gameObject.SetActive(!pause);
+		}
+	}
+
 	public Cell GetCellAt(int x, int y)
 	{
 		return Grid[x + width * y];
